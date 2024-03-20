@@ -2,7 +2,7 @@ import React from 'react'
 
 const FirstPage = () => {
     const style = {
-        color: '#fff',
+        color: '#000',
         fontSize: '30px'
     }
   return (

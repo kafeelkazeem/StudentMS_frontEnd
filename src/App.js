@@ -1,9 +1,11 @@
+import React from 'react';
 import './App.css';
-import firstPage from './firstPage';
+import FirstPage from './firstPage';
 function App() {
     return (
     <>
-      <firstPage />
+      <FirstPage />
+      <p>my first page</p>
     </>
   );
 }

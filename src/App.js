@@ -1,8 +1,12 @@
 import './App.css';
 function App() {
+  style = {
+     color: '#fff',
+     fontSize: '30px'
+  }
   return (
     <>
-      Hi this is my App
+      <h1>Hello welcome to my website, thanks for visitiing</h1>
     </>
   );
 }

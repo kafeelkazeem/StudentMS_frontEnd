@@ -16,6 +16,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import SchoolIcon from '@mui/icons-material/School';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const drawerWidth = 240;
 
@@ -44,11 +46,11 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Dash Board'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -57,11 +59,11 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <SchoolIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -75,14 +77,14 @@ function ResponsiveDrawer(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+      <>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: 'grey',
+          backgroundColor: '#06547b',
         }}
       >
         <Toolbar>
@@ -166,7 +168,7 @@ function ResponsiveDrawer(props) {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box> */}
-    </Box>
+    </>
   );
 }
 

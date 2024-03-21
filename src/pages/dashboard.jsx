@@ -46,7 +46,7 @@ const Dash_board = () => {
       >
         <Toolbar />
         <Typography paragraph>
-          Hi welcome to my name is Kafeel Kazeem, this is just a practice project built with react and material ui, the app is deployed
+          Hi welcome to my project. My name is Kafeel Kazeem, this is just a practice project built with react and material ui, the app is deployed
           on vercel. It is meant to be a student management system which will enable the admin to keep track of student they have in their
           school.
         </Typography>

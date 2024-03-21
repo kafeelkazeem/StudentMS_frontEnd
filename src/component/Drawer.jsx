@@ -18,6 +18,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -41,13 +43,15 @@ function ResponsiveDrawer(props) {
     }
   };
 
+  const navigate = useNavigate()
+
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
         {['Dash Board'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <Link to='/' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <DashboardIcon />
@@ -55,19 +59,20 @@ function ResponsiveDrawer(props) {
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
       <List>
         {['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <Link to='/primary1' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <SchoolIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
-          </ListItem>
+          </ListItem></Link>
         ))}
       </List>
     </div>

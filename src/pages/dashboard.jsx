@@ -24,8 +24,6 @@ const Dashboard = () => {
   const notPaidStudents = 50;
   const owingStudents = 50;
 
-  const color = red[500];
-
   return (
     <Root>
       <Grid container spacing={3}>

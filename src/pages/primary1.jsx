@@ -2,6 +2,7 @@ import React from 'react'
 import DataGridDemo from '../component/dataGrid'
 import { Box, Toolbar } from '@mui/material'
 import ResponsiveDrawer from '../component/Drawer'
+import Filters from '../component/filters'
 
 const Primary1 = () => {
   return (
@@ -12,6 +13,7 @@ const Primary1 = () => {
          sx={{ flexGrow: 1, p: 3 }}
       >
         <Toolbar />
+        <Filters />
         <DataGridDemo />
         </Box>
     </Box>

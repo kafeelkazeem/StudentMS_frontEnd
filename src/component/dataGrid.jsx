@@ -23,32 +23,48 @@ const columns = [
     field: 'age',
     headerName: 'Age',
     type: 'number',
+    width: 150,
+    editable: false,
+    headerClassName: 'super-app-theme--header'
+  },
+  {
+    field: 'gender',
+    headerName: 'Gender',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 150,
+    headerClassName: 'super-app-theme--header',
+    // valueGetter: (params) =>
+    //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  },
+  {
+    field: 'paid',
+    headerName: 'Paid',
+    type: 'number',
     width: 110,
     editable: false,
     headerClassName: 'super-app-theme--header'
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    headerClassName: 'super-app-theme--header',
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    field: 'balance',
+    headerName: 'Balance',
+    type: 'number',
+    width: 110,
+    editable: false,
+    headerClassName: 'super-app-theme--header'
   },
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14, gender: 'Male', paid: 7000, balance: 3000 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31, gender: 'Female', paid: 0, balance: 14000 },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31, gender: 'Male', paid: 6000, balance: 7000 },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11, gender: 'Female', paid: 7000, balance: 3000 },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null, gender: 'Female', paid: 7000, balance: 3000 },
+  { id: 6, lastName: 'Melisandre', firstName: 'Targaryen', age: 150, gender: 'Female', paid: 7000, balance: 3000},
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, gender: 'Male', paid: 7000, balance: 3000 },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, gender: 'Male', paid: 7000, balance: 3000 },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, gender: 'Male', paid: 7000, balance: 3000 },
 ];
 
 export default function DataGridDemo() {
@@ -58,10 +74,10 @@ export default function DataGridDemo() {
       width: 'auto',
       '& .super-app-theme--header': {
         backgroundColor: blueGrey[500],
-        color: 'white'
+        color: 'white',
       },
     }}>
-      <DataGrid
+      <DataGrid sx={{mt: 3}}
         rows={rows}
         columns={columns}
         // initialState={{

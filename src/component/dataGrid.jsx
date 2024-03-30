@@ -49,7 +49,7 @@ const columns = [
     field: 'balance',
     headerName: 'Balance',
     type: 'number',
-    width: 110,
+    width: 160,
     editable: false,
     headerClassName: 'super-app-theme--header'
   },

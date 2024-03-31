@@ -29,9 +29,9 @@ const ResponsiveMenu = () => {
             }}
             >
             <ButtonGroup variant="text" aria-label="Basic button group">
-                <Button><VisibilityIcon /> All</Button>
+                <Button><VisibilityIcon />View All</Button>
                 <Button sx={{color: green[400]}}><PaidIcon />Paid</Button>
-                <Button sx={{color: orange[400]}}><RemoveIcon />Balance</Button>
+                <Button sx={{color: orange[400]}}><RemoveIcon />Owing</Button>
                 <Button sx={{color: red[300]}}><MoneyOffIcon /> Not Paid</Button>
                 <Button sx={{color: blueGrey[400]}}><AddIcon />Add Student</Button>
             </ButtonGroup>

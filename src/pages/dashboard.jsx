@@ -4,6 +4,7 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { Toolbar, Box } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import { red, purple, teal, orange, blueGrey, lightBlue, indigo } from '@mui/material/colors';
+import SearchInput from '../component/search';
 
 const Root = styled('div')(({ theme }) => ({
   flexFlow: 1,
@@ -62,6 +63,7 @@ const Dash_board = () => {
       <ResponsiveDrawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
+        <SearchInput />
         <Dashboard />
       </Box>
     </Box>

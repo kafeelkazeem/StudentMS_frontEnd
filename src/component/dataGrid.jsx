@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { blueGrey, brown } from '@mui/material/colors';
+import { Typography, useMediaQuery } from '@mui/material';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90, headerClassName: 'super-app-theme--header' },
@@ -76,14 +77,14 @@ export default function DataGridDemo() {
         backgroundColor: blueGrey[500],
         color: 'white',
       },
-    }}>
-      <DataGrid sx={{mt: 3}}
+    }}> 
+        <DataGrid sx={{mt: 3}}
         rows={rows}
         columns={columns}
         // initialState={{
         //   pagination: {
         //     paginationModel: {
-        //       pageSize: 8,
+        //       pageSize: 3,
         //     },
         //   },
         // }}
@@ -91,6 +92,7 @@ export default function DataGridDemo() {
         //checkboxSelection
         //disableRowSelectionOnClick
       />
+
     </Box>
   );
 }

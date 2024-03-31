@@ -2,7 +2,6 @@ import React from 'react'
 import DataGridDemo from '../component/dataGrid'
 import { Box, Toolbar } from '@mui/material'
 import ResponsiveDrawer from '../component/Drawer'
-import Filters from '../component/filters'
 import ResponsiveMenu from '../component/responsiveMenu'
 
 const Primary1 = () => {

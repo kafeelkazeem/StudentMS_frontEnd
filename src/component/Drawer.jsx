@@ -23,6 +23,34 @@ import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
+const classes = [  
+  {
+    id: 1,
+    title: 'Primary 1',
+    path: '/primary1'
+  },
+  {
+    id: 2,
+    title: 'Primary 2',
+    path: '/primary2'
+  },
+  {
+    id: 3,
+    title: 'Primary 3',
+    path: '/primary3'
+  },
+  {
+    id: 4,
+    title: 'Primary 4',
+    path: '/primary4'
+  },
+  {
+    id: 5,
+    title: 'Primary 5',
+    path: '/primary5'
+  }
+]
+
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -64,13 +92,13 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        {['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5'].map((text, index) => (
-          <Link to='/primary1' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
+        {classes.map((i, index) => (
+          <Link to={i.path} style={{textDecoration: 'none', color: 'black'}}><ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <SchoolIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={i.title} />
             </ListItemButton>
           </ListItem></Link>
         ))}

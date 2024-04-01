@@ -56,19 +56,7 @@ const columns = [
   },
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14, gender: 'Male', paid: 7000, balance: 3000 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31, gender: 'Female', paid: 0, balance: 14000 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31, gender: 'Male', paid: 6000, balance: 7000 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11, gender: 'Female', paid: 7000, balance: 3000 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null, gender: 'Female', paid: 7000, balance: 3000 },
-  { id: 6, lastName: 'Melisandre', firstName: 'Targaryen', age: 150, gender: 'Female', paid: 7000, balance: 3000},
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, gender: 'Male', paid: 7000, balance: 3000 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, gender: 'Male', paid: 7000, balance: 3000 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, gender: 'Male', paid: 7000, balance: 3000 },
-];
-
-export default function DataGridDemo() {
+export default function DataGridDemo(props) {
   return (
     <Box /*sx={{ height: 'auto', width: '100%' }}*/  sx={{
       height: 'auto',
@@ -79,7 +67,7 @@ export default function DataGridDemo() {
       },
     }}> 
         <DataGrid sx={{mt: 3}}
-        rows={rows}
+        rows={props.rows}
         columns={columns}
         // initialState={{
         //   pagination: {

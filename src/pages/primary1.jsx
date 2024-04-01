@@ -26,7 +26,7 @@ const Primary1 = () => {
       >
         <Toolbar />
         <ResponsiveMenu />
-        <DataGridDemo rows = {rows} />
+        <DataGridDemo rows = {rows} name = 'myname' />
         </Box>
     </Box>
   )

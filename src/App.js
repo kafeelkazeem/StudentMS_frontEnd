@@ -8,6 +8,7 @@ import Primary2 from './pages/primary2';
 import Primary3 from './pages/primary3';
 import Primary4 from './pages/primary4';
 import Primary5 from './pages/primary5';
+import Profile from './pages/profile';
 function App() {
     return (
       <>
@@ -19,6 +20,7 @@ function App() {
             <Route path='/primary3' element={<Primary3 />} />
             <Route path='/primary4' element={<Primary4 />} />
             <Route path='/primary5' element={<Primary5 />} />
+            <Route path='/profile/:name' element={<Profile />} />
           </Routes>
         </BrowserRouter>
       </>

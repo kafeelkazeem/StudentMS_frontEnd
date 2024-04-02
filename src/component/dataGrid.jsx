@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { blueGrey, brown } from '@mui/material/colors';
@@ -60,6 +60,8 @@ const columns = [
 export default function DataGridDemo(props) {
   const [selectedRow, setSelectedRow] = React.useState(null);
   const navigate = useNavigate();
+  const location = useLocation()
+  const { pathname, search, hash } = location;
 
   const handleSelectionModelChange = (selectionModel) => {
     // Assuming single selection mode
@@ -67,8 +69,8 @@ export default function DataGridDemo(props) {
       const selectedRowIndex = selectionModel[0];
       const selectedRowData = props.rows.find(row => row.id === selectedRowIndex);
       if (selectedRowData) {
-        const { firstName } = selectedRowData;
-        navigate(`/profile/${firstName}`);
+        const { firstName, lastName } = selectedRowData;
+        navigate(`${pathname}/${firstName} ${lastName}`);
       }
     }
   };

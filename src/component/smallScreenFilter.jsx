@@ -3,18 +3,14 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PaidIcon from '@mui/icons-material/Paid';
 import RemoveIcon from '@mui/icons-material/Remove';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import AddIcon from '@mui/icons-material/Add';
-import { green, orange, red, blueGrey, indigo, blue } from '@mui/material/colors';
+import { green, orange, red, blueGrey, blue } from '@mui/material/colors';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -93,7 +89,7 @@ export default function CustomizedMenus() {
       >
         <MenuItem onClick={handleClose} disableRipple>
           <VisibilityIcon />
-          All
+          View All
         </MenuItem>
         <MenuItem sx={{color: green[400]}} onClick={handleClose} disableRipple>
           <PaidIcon />
@@ -101,7 +97,7 @@ export default function CustomizedMenus() {
         </MenuItem>
         <MenuItem sx={{color: orange[400]}} onClick={handleClose} disableRipple>
           <RemoveIcon />
-          Balance
+          Owing
         </MenuItem>
         <MenuItem sx={{color: red[300]}} onClick={handleClose} disableRipple>
           <MoneyOffIcon />

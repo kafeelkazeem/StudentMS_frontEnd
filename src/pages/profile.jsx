@@ -43,7 +43,7 @@ const Edit = () => {
     <Button
       component="center"
       variant="contained"
-      sx={{ backgroundColor: cyan[700] }}
+      sx={{ backgroundColor: cyan[700],}}
       disableElevation
       startIcon={<EditIcon />}
     >
@@ -127,11 +127,11 @@ function SecondGrid() {
             <ListItemText id="switch-list-label-wifi" primary={<Typography variant='h5' sx={{color: green[500]}}>Paid</Typography>} />
           </ListItem>
           <ListItem>
-            <PaymentHistory />
+            <AddPayment />
           </ListItem>
           <ListItem></ListItem>
           <ListItem>
-            <AddPayment />
+            <PaymentHistory />
           </ListItem>
         </List>
         </Paper>

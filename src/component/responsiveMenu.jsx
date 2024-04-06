@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import { useMediaQuery, AppBar, Toolbar, Button, Typography } from '@mui/material';
@@ -12,7 +12,39 @@ import { green, orange, red, blueGrey } from '@mui/material/colors';
 
 const ResponsiveMenu = () => {
   const isLargeScreen = useMediaQuery('(min-width:600px)');
+  const [viewAllStatus, setViewAllStatus] = useState(true)
+  const [paidStatus, setPaidStatus] = useState(false);
+  const [owingStatus, setOwingStatus] = useState(false)
+  const [notPaidStatus, setNotPaidStatus] = useState(false)
 
+  const handleViewAll = () =>{
+    setViewAllStatus(true)
+    setPaidStatus(false)
+    setOwingStatus(false)
+    setNotPaidStatus(false)
+  }
+
+  const handlePaid = () =>{
+    setViewAllStatus(false)
+    setPaidStatus(true)
+    setOwingStatus(false)
+    setNotPaidStatus(false)
+  }
+
+  const handleOwing = () =>{
+    setViewAllStatus(false)
+    setPaidStatus(false)
+    setOwingStatus(true)
+    setNotPaidStatus(false)
+  }
+
+  const handleNotPaid = () =>{
+    setViewAllStatus(false)
+    setPaidStatus(false)
+    setOwingStatus(false)
+    setNotPaidStatus(true)
+  }
+  
   return (
       <Toolbar>
         {isLargeScreen ? (
@@ -29,10 +61,10 @@ const ResponsiveMenu = () => {
             }}
             >
             <ButtonGroup variant="text" aria-label="Basic button group">
-                <Button><VisibilityIcon />View All</Button>
-                <Button sx={{color: green[400]}}><PaidIcon />Paid</Button>
-                <Button sx={{color: orange[400]}}><RemoveIcon />Owing</Button>
-                <Button sx={{color: red[300]}}><MoneyOffIcon /> Not Paid</Button>
+                <Button onClick={handleViewAll} variant={(viewAllStatus ? 'outlined' : 'text')}><VisibilityIcon />View All</Button>
+                <Button onClick={handlePaid} variant={(paidStatus ? 'outlined' : 'text')} sx={{color: green[400]}}><PaidIcon />Paid</Button>
+                <Button onClick={handleOwing} variant={(owingStatus ? 'outlined' : 'text')} sx={{color: orange[400]}}><RemoveIcon />Owing</Button>
+                <Button onClick={handleNotPaid} variant={(notPaidStatus ? 'outlined' : 'text')} sx={{color: red[300]}}><MoneyOffIcon /> Not Paid</Button>
                 <Button sx={{color: blueGrey[400]}}><AddIcon />Add Student</Button>
             </ButtonGroup>
             </Box>

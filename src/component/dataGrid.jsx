@@ -12,7 +12,8 @@ const columns = [
     headerName: 'First name',
     width: 150,
     editable: false,
-    headerClassName: 'super-app-theme--header'
+    headerClassName: 'super-app-theme--header',
+
   },
   {
     field: 'lastName',
@@ -32,6 +33,16 @@ const columns = [
   {
     field: 'gender',
     headerName: 'Gender',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 150,
+    headerClassName: 'super-app-theme--header',
+    // valueGetter: (params) =>
+    //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 150,

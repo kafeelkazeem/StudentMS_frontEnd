@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Paper, Typography } from '@mui/material';
 import { Toolbar, Box } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import { red, purple, teal, orange, blueGrey, lightBlue, indigo } from '@mui/material/colors';
 import SearchInput from '../component/search';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Root = styled('div')(({ theme }) => ({
   flexFlow: 1,
@@ -58,6 +60,15 @@ const Dashboard = () => {
 };
 
 const Dash_board = () => {
+  useEffect(()=>{
+    axios.get('http://localhost:3000/api')
+    .then(res=>{
+      alert(res.data.data)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }, [])
   return (
     <Box sx={{ display: 'flex' }}>
       <ResponsiveDrawer />

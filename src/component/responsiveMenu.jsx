@@ -9,71 +9,113 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import AddIcon from '@mui/icons-material/Add';
 import { green, orange, red, blueGrey } from '@mui/material/colors';
+import AddStudentForm from './addStudent';
+import axios from 'axios';
 
 const ResponsiveMenu = () => {
   const isLargeScreen = useMediaQuery('(min-width:600px)');
-  const [viewAllStatus, setViewAllStatus] = useState(true)
+  const [viewAllStatus, setViewAllStatus] = useState(true);
   const [paidStatus, setPaidStatus] = useState(false);
-  const [owingStatus, setOwingStatus] = useState(false)
-  const [notPaidStatus, setNotPaidStatus] = useState(false)
+  const [owingStatus, setOwingStatus] = useState(false);
+  const [notPaidStatus, setNotPaidStatus] = useState(false);
+  const [openAddStudentModal, setOpenAddStudentModal] = useState(false);
 
-  const handleViewAll = () =>{
-    setViewAllStatus(true)
-    setPaidStatus(false)
-    setOwingStatus(false)
-    setNotPaidStatus(false)
-  }
+  const handleViewAll = () => {
+    setViewAllStatus(true);
+    setPaidStatus(false);
+    setOwingStatus(false);
+    setNotPaidStatus(false);
+  };
 
-  const handlePaid = () =>{
-    setViewAllStatus(false)
-    setPaidStatus(true)
-    setOwingStatus(false)
-    setNotPaidStatus(false)
-  }
+  const handlePaid = () => {
+    setViewAllStatus(false);
+    setPaidStatus(true);
+    setOwingStatus(false);
+    setNotPaidStatus(false);
+  };
 
-  const handleOwing = () =>{
-    setViewAllStatus(false)
-    setPaidStatus(false)
-    setOwingStatus(true)
-    setNotPaidStatus(false)
-  }
+  const handleOwing = () => {
+    setViewAllStatus(false);
+    setPaidStatus(false);
+    setOwingStatus(true);
+    setNotPaidStatus(false);
+  };
 
-  const handleNotPaid = () =>{
-    setViewAllStatus(false)
-    setPaidStatus(false)
-    setOwingStatus(false)
-    setNotPaidStatus(true)
-  }
-  
+  const handleNotPaid = () => {
+    setViewAllStatus(false);
+    setPaidStatus(false);
+    setOwingStatus(false);
+    setNotPaidStatus(true);
+  };
+
+  const handleOpenAddStudentModal = () => {
+    setOpenAddStudentModal(true);
+  };
+
+  const handleCloseAddStudentModal = () => {
+    setOpenAddStudentModal(false);
+  };
+
+  const data = new FormData()
+  data.append('name', 'john doe')
+  data.append('age', 12)
+
+  const handleAddStudent = () =>{
+    axios.post('http://localhost:3000/api/addStudent', {name: 'john doe', age: 11},
+      // fullName : 'john doe',
+      // age: 12,
+      // dob : '12/12/2020',
+      // cls : 'primary 1',
+      // section : 'primary',
+      // gender : 'male',
+      // parentName : 'doe',
+      // PhoneNumber : '1234',
+      // address : 'kano',
+      // status : 'paid',
+      // paid : 1200,
+      // owing : 0
+    )
+    .then(res =>{
+      alert(res.data.message)
+      // res.data.message && alert('created')
+    })
+    .catch(err =>{
+      alert(err)
+    })
+  } 
+
   return (
-      <Toolbar>
-        {isLargeScreen ? (
-          // Render button group for large screens
-          <>
+    <Toolbar>
+      {isLargeScreen ? (
+        // Render button group for large screens
+        <>
           <Box
             sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                '& > *': {
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              '& > *': {
                 m: 1,
-                },
+              },
             }}
-            >
+          >
             <ButtonGroup variant="text" aria-label="Basic button group">
-                <Button onClick={handleViewAll} variant={(viewAllStatus ? 'outlined' : 'text')}><VisibilityIcon />View All</Button>
-                <Button onClick={handlePaid} variant={(paidStatus ? 'outlined' : 'text')} sx={{color: green[400]}}><PaidIcon />Paid</Button>
-                <Button onClick={handleOwing} variant={(owingStatus ? 'outlined' : 'text')} sx={{color: orange[400]}}><RemoveIcon />Owing</Button>
-                <Button onClick={handleNotPaid} variant={(notPaidStatus ? 'outlined' : 'text')} sx={{color: red[300]}}><MoneyOffIcon /> Not Paid</Button>
-                <Button sx={{color: blueGrey[400]}}><AddIcon />Add Student</Button>
+              <Button onClick={handleViewAll} variant={(viewAllStatus ? 'outlined' : 'text')}><VisibilityIcon />View All</Button>
+              <Button onClick={handlePaid} variant={(paidStatus ? 'outlined' : 'text')} sx={{ color: green[400] }}><PaidIcon />Paid</Button>
+              <Button onClick={handleOwing} variant={(owingStatus ? 'outlined' : 'text')} sx={{ color: orange[400] }}><RemoveIcon />Owing</Button>
+              <Button onClick={handleNotPaid} variant={(notPaidStatus ? 'outlined' : 'text')} sx={{ color: red[300] }}><MoneyOffIcon /> Not Paid</Button>
+              <Button onClick={handleAddStudent} sx={{ color: blueGrey[400] }}><AddIcon />Add Student</Button>
             </ButtonGroup>
-            </Box>
-          </>
-        ) : (
-          // Render menu icon for small screens
-          <CustomizedMenus />
-        )}
-      </Toolbar>
+          </Box>
+        </>
+      ) : (
+        // Render menu icon for small screens
+        <CustomizedMenus />
+      )}
+
+      {/* AddStudentForm modal */}
+      <AddStudentForm open={openAddStudentModal} onClose={handleCloseAddStudentModal} />
+    </Toolbar>
   );
 };
 

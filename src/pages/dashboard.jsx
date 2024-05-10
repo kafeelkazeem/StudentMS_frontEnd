@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Paper, Typography } from '@mui/material';
 import { Toolbar, Box } from '@mui/material';
@@ -7,6 +7,7 @@ import { red, purple, teal, orange, blueGrey, lightBlue, indigo } from '@mui/mat
 import SearchInput from '../component/search';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { url } from '../util/url';
 
 const Root = styled('div')(({ theme }) => ({
   flexFlow: 1,
@@ -21,11 +22,20 @@ const Root = styled('div')(({ theme }) => ({
   }))
 
 const Dashboard = () => {
-  // Mock data (replace with actual data from API or state)
-  const totalStudents = 500;
-  const paidStudents = 400;
-  const notPaidStudents = 50;
-  const owingStudents = 50;
+  const [totalStudents, setTotalStudents] = useState(null)
+  const [paidStudents, setPaidStudents] = useState(null)
+  const [notPaidStudents, setNotPaidStudents] = useState(null)
+  const [owingStudents, setOwingStudents] = useState(null)
+
+  useEffect(()=>{
+    axios.get(`${url}/dashBoard`)
+    .then(res =>{
+      setTotalStudents(res.data.totalStudent)
+      setPaidStudents(res.data.totalStudentPaid)
+      setNotPaidStudents(res.data.totalStudentNotPaid)
+      setOwingStudents(res.data.totalStudentOwing)
+    })
+  }, [])
 
   return (
     <Root>
@@ -60,15 +70,6 @@ const Dashboard = () => {
 };
 
 const Dash_board = () => {
-  useEffect(()=>{
-    axios.get('http://localhost:3000/api')
-    .then(res=>{
-      alert(res.data.data)
-    })
-    .catch(err =>{
-      console.log(err)
-    })
-  }, [])
   return (
     <Box sx={{ display: 'flex' }}>
       <ResponsiveDrawer />

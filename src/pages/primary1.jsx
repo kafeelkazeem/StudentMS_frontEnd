@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DataGridDemo from '../component/dataGrid'
 import { Box, Toolbar } from '@mui/material'
 import ResponsiveDrawer from '../component/Drawer'
 import ResponsiveMenu from '../component/responsiveMenu'
+import axios from 'axios'
+import { url } from '../util/url'
 
 const rows = [
   { id: 1, lastName: 'Smith', firstName: 'Morty', age: 14, gender: 'Male', status: 'paid', paid: 7000, balance: 3000 },
@@ -17,6 +19,23 @@ const rows = [
 ];
 
 const Primary1 = () => {
+
+  const [rows, setRows] = useState([])
+
+  useEffect(() =>{
+    axios.get(`${url}/getClass`, {
+      params : {
+        class: 'primary 1'
+      }
+    })
+    .then(res =>{
+      setRows(res)
+      console.log(res)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }, [])
   return (
     <Box sx={{ display: 'flex' }}>
         <ResponsiveDrawer />

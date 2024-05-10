@@ -11,6 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { green, orange, red, blueGrey } from '@mui/material/colors';
 import AddStudentForm from './addStudent';
 import axios from 'axios';
+import { url } from '../util/url';
 
 const ResponsiveMenu = () => {
   const isLargeScreen = useMediaQuery('(min-width:600px)');
@@ -56,28 +57,24 @@ const ResponsiveMenu = () => {
     setOpenAddStudentModal(false);
   };
 
-  const data = new FormData()
-  data.append('name', 'john doe')
-  data.append('age', 12)
-
   const handleAddStudent = () =>{
-    axios.post('http://localhost:3000/api/addStudent', {name: 'john doe', age: 11},
-      // fullName : 'john doe',
-      // age: 12,
-      // dob : '12/12/2020',
-      // cls : 'primary 1',
-      // section : 'primary',
-      // gender : 'male',
-      // parentName : 'doe',
-      // PhoneNumber : '1234',
-      // address : 'kano',
-      // status : 'paid',
-      // paid : 1200,
-      // owing : 0
+    axios.post(`${url}/addStudent`, {
+      fullName : 'john doe',
+      age: 12,
+      dob : 2010-10-10,
+      cls : 'primary 3',
+      section : 'primary',
+      gender : 'male',
+      parentName : 'doe',
+      PhoneNumber : '1234',
+      address : 'kano',
+      status : 'paid',
+      paid : 1200,
+      owing : 0
+      }
     )
     .then(res =>{
-      alert(res.data.message)
-      // res.data.message && alert('created')
+      res.data.message && alert('created')
     })
     .catch(err =>{
       alert(err)

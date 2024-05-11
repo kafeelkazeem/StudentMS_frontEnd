@@ -13,7 +13,7 @@ import AddStudentForm from './addStudent';
 import axios from 'axios';
 import { url } from '../util/url';
 
-const ResponsiveMenu = () => {
+const ResponsiveMenu = ({getPaid, getAll, getOwing, getNotPaid}) => {
   const isLargeScreen = useMediaQuery('(min-width:600px)');
   const [viewAllStatus, setViewAllStatus] = useState(true);
   const [paidStatus, setPaidStatus] = useState(false);
@@ -26,6 +26,7 @@ const ResponsiveMenu = () => {
     setPaidStatus(false);
     setOwingStatus(false);
     setNotPaidStatus(false);
+    getAll()
   };
 
   const handlePaid = () => {
@@ -33,6 +34,7 @@ const ResponsiveMenu = () => {
     setPaidStatus(true);
     setOwingStatus(false);
     setNotPaidStatus(false);
+    getPaid()
   };
 
   const handleOwing = () => {
@@ -40,6 +42,7 @@ const ResponsiveMenu = () => {
     setPaidStatus(false);
     setOwingStatus(true);
     setNotPaidStatus(false);
+    getOwing()
   };
 
   const handleNotPaid = () => {
@@ -47,6 +50,7 @@ const ResponsiveMenu = () => {
     setPaidStatus(false);
     setOwingStatus(false);
     setNotPaidStatus(true);
+    getNotPaid()
   };
 
   const handleOpenAddStudentModal = () => {
@@ -59,16 +63,17 @@ const ResponsiveMenu = () => {
 
   const handleAddStudent = () =>{
     axios.post(`${url}/addStudent`, {
-      fullName : 'john doe',
+      firstName : 'john',
+      lastName : 'doe',
       age: 12,
-      dob : 2010-10-10,
+      dob : '2010-10-10',
       cls : 'primary 3',
       section : 'primary',
       gender : 'male',
       parentName : 'doe',
       PhoneNumber : '1234',
       address : 'kano',
-      status : 'paid',
+      status : 'not paid',
       paid : 1200,
       owing : 0
       }

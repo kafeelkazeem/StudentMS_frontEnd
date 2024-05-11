@@ -19,18 +19,64 @@ const Primary2 = () => {
   const [rows, setRows] = useState([])
 
   useEffect(() =>{
-    axios.get(`${url}/getClass`, {
+    getAll()
+  }, [])
+
+  const getAll = () =>{
+    axios.get(`${url}/getAll`, {
       params : {
         class: 'primary 2'
       }
     })
     .then(res =>{
-      setRows(res)
+      setRows(res.data)
     })
     .catch(err =>{
-      console.log(err)
+      alert(err)
     })
-  }, [])
+  }
+
+  const getPaid = () =>{
+    axios.get(`${url}/getPaid`, {
+      params : {
+        class: 'primary 2'
+      }
+    })
+    .then(res =>{
+      setRows(res.data)
+    })
+    .catch(err =>{
+      alert(err)
+    })
+  }
+
+  const getOwing = () =>{
+    axios.get(`${url}/getOwing`, {
+      params : {
+        class: 'primary 2'
+      }
+    })
+    .then(res =>{
+      setRows(res.data)
+    })
+    .catch(err =>{
+      alert(err)
+    })
+  }
+
+  const getNotPaid = () =>{
+    axios.get(`${url}/getNotPaid`, {
+      params : {
+        class: 'primary 2'
+      }
+    })
+    .then(res =>{
+      setRows(res.data)
+    })
+    .catch(err =>{
+      alert(err)
+    })
+  }
   return (
     <Box sx={{ display: 'flex' }}>
         <ResponsiveDrawer />
@@ -39,7 +85,7 @@ const Primary2 = () => {
          sx={{ flexGrow: 1, p: 3 }}
       >
         <Toolbar />
-        <ResponsiveMenu />
+        <ResponsiveMenu getAll={getAll} getPaid={getPaid} getOwing={getOwing} getNotPaid={getNotPaid} />
         <DataGridDemo rows={rows} />
         </Box>
     </Box>

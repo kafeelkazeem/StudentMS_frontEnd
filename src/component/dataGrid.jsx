@@ -92,8 +92,8 @@ export default function DataGridDemo(props) {
       const selectedRowIndex = selectionModel[0];
       const selectedRowData = props.rows.find(row => row.id === selectedRowIndex);
       if (selectedRowData) {
-        const { firstName, lastName } = selectedRowData;
-        navigate(`${pathname}/${firstName} ${lastName}`);
+        const { id } = selectedRowData;
+        navigate(`${pathname}/${id}`);
       }
     }
   };

@@ -12,39 +12,48 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
+import { url } from '../util/url';
 
 const AddStudentForm = ({ open, onClose }) => {
-  // State variables for form data
-  const [formData, setFormData] = useState({
-    fullName: '',
-    dateOfBirth: '',
-    age: '',
-    gender: '',
-    class: '',
-    section: '',
-    parentName: '',
-    phoneNumber: '',
-    address: '',
-    status: '',
-    paid: '',
-    owing: ''
-  });
 
-  // Event handler to update form data
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData(prevState => ({
-  //     ...prevState,
-  //     [name]: value
-  //   }));
-  // };
+  const [firstName, setFirstName] = useState(null)
+  const [lastName, setLastName] = useState(null)
+  const [dob, setDob] = useState(null)
+  const [section, setSection] = useState(null)
+  const [cls, setClass] = useState(null)
+  const [gender, setGender] = useState(null)
+  const [parentName, setParentName] = useState(null)
+  const [phoneNumber, setNumber] = useState(null)
+  const [address, setAddress] = useState(null)
+  const [status, setStatus] = useState(null)
+  const [paid, setPaid] = useState(null)
+  const [owing, setOwing] = useState(null)  
 
-  // Event handler for form submission
   const handleSubmit = () => {
-    // Perform any necessary actions with the form data
-    console.log(formData);
-    // Close the modal
-    onClose();
+    axios.post(`${url}/addStudent`, {
+      firstName : firstName,
+      lastName : lastName,
+      age: 12,
+      dob : dob,
+      cls : cls,
+      section : section,
+      gender : gender,
+      parentName : parentName,
+      PhoneNumber : phoneNumber,
+      address : address,
+      status : status,
+      paid : paid,
+      owing : owing
+      }
+    )
+    .then(res =>{
+      res.data.message && alert('created')
+      onClose();
+    })
+    .catch(err =>{
+      alert(err)
+    })
   };
 
   return (
@@ -73,11 +82,15 @@ const AddStudentForm = ({ open, onClose }) => {
               id="firstName"
               name="firstName"
               label="First Name"
+              value= {firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <TextField
               id="lastName"
               name="lastName"
               label="Last Name"
+              value= {lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </Stack>
           <TextField
@@ -86,6 +99,8 @@ const AddStudentForm = ({ open, onClose }) => {
             label="Date of Birth"
             type="date"
             InputLabelProps={{ shrink: true }} // Shrink label on focus
+            value= {dob}
+            onChange={(e) => setDob(e.target.value)}
           />
           <Stack direction='row' spacing={3}>
             <FormControl fullWidth>
@@ -95,6 +110,8 @@ const AddStudentForm = ({ open, onClose }) => {
                 id="section"
                 name="section"
                 label="Section"
+                value= {section}
+                onChange={(e) => setSection(e.target.value)}
               >
                 <MenuItem value="primary">Primary</MenuItem>
                 <MenuItem value="secondary">Secondary</MenuItem>
@@ -107,6 +124,8 @@ const AddStudentForm = ({ open, onClose }) => {
                 id="class"
                 name="class"
                 label="class"
+                value= {cls}
+                onChange={(e) => setClass(e.target.value)}
               >
                 <MenuItem value="primary 1">Primary 1</MenuItem>
                 <MenuItem value="primary 2">Primary 2</MenuItem>
@@ -123,6 +142,8 @@ const AddStudentForm = ({ open, onClose }) => {
               id="gender"
               name="gender"
               label="Gender"
+              value= {gender}
+              onChange={(e) => setGender(e.target.value)}
             >
               <MenuItem value="male">Male</MenuItem>
               <MenuItem value="female">Female</MenuItem>
@@ -133,17 +154,23 @@ const AddStudentForm = ({ open, onClose }) => {
               id="parentName"
               name="parentName"
               label="Parent Name"
+              value= {parentName}
+              onChange={(e) => setParentName(e.target.value)}
             />
             <TextField
               id="PhoneNumber"
               name="PhoneNumber"
               label="Phone Number"
+              value= {phoneNumber}
+              onChange={(e) => setNumber(e.target.value)}
             />
           </Stack>
           <TextField
             id="address"
             name="address"
             label="Address"
+            value= {address}
+            onChange={(e) => setAddress(e.target.value)}
           />
           <FormControl fullWidth>
               <InputLabel id="status">Status</InputLabel>
@@ -152,6 +179,8 @@ const AddStudentForm = ({ open, onClose }) => {
                 id="status"
                 name="status"
                 label="status"
+                value= {status}
+                onChange={(e) => setStatus(e.target.value)}
               >
                 <MenuItem value="paid">Paid</MenuItem>
                 <MenuItem value="owing">Owing</MenuItem>
@@ -164,15 +193,19 @@ const AddStudentForm = ({ open, onClose }) => {
               name="paid"
               label="Paid Amount"
               type="number"
+              value= {paid}
+              onChange={(e) => setPaid(e.target.value)}
             />
             <TextField
               id="owing"
               name="owing"
               label="Owing Amount"
               type="number"
+              value= {owing}
+              onChange={(e) => setOwing(e.target.value)}
             />
           </Stack>
-            <Button variant='contained'>Add</Button>
+            <Button onClick={handleSubmit} variant='contained'>Add</Button>
           </Stack>
     </FormControl>
       </Box>

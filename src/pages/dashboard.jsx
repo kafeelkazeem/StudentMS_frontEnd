@@ -35,6 +35,9 @@ const Dashboard = () => {
       setNotPaidStudents(res.data.totalStudentNotPaid)
       setOwingStudents(res.data.totalStudentOwing)
     })
+    .catch(err =>{
+      console.log(err)
+    })
   }, [])
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Toolbar, Button, Paper, Stack, Typography } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import { useParams } from 'react-router-dom';
@@ -17,6 +17,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PaymentIcon from '@mui/icons-material/Payment';
+import axios from 'axios';
+import { url } from '../util/url';
 
 
 const Back = () => {
@@ -88,8 +90,7 @@ const PaymentHistory = () => {
   )
 }
 
-function FirstGrid() {
-  const { name } = useParams();
+function FirstGrid({name}) {
   return (
     <Box sx={{ flexGrow: 1, mt: 8 }}>
       <Paper sx={{ p: 3, backgroundColor: '#EDEFF6' }} elevation={1}>
@@ -109,13 +110,16 @@ function FirstGrid() {
   );
 }
 
-function SecondGrid() {
+function SecondGrid({obj}) {
+  // useEffect(() =>{
+  //   console.log(obj)
+  // }, [])
   return (
     <Box sx={{ flexGrow: 1, mt: 8 }}>
     <Grid container spacing={7}>
       <Grid item lg={7}>
         <Paper sx={{ p: 3, backgroundColor: '#EDEFF6' }} elevation={1}>
-          <MyList />
+          <MyList obj={obj} />
         </Paper>
       </Grid>
       <Grid item>
@@ -142,14 +146,34 @@ function SecondGrid() {
 }
 
 const Profile = () => {
+
+  const [name, setName] = useState(null)
+
+  const [obj, setObj] = useState([])
+
+  const {id} = useParams()
+  useEffect(() =>{
+    axios.get(`${url}/getSingleStudent`, {
+      params : {
+        id : id
+      }
+    })
+    .then(result =>{
+      setName(`${result.data.firstName} ${result.data.lastName}`)
+      setObj(result.data)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }, [])
   return (
     <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
       <ResponsiveDrawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: '100%' }}>
         <Toolbar />
         <Back />
-        <FirstGrid />
-        <SecondGrid />
+        <FirstGrid name={name} />
+        <SecondGrid obj={obj} />
       </Box>
     </Box>
   );

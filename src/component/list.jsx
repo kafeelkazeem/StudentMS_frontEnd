@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -6,38 +6,38 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import { Typography, Divider } from '@mui/material';
 
-const data = [
-  {
-    item: 'Date of Birth',
-    value: '14/5/2010'
-  },
-  {
-    item: 'Age',
-    value: '14'
-  },
-  {
-    item: 'Gender',
-    value: 'Female'
-  },
-  {
-    item: 'Parent/Gurdian Name',
-    value: 'Robert Stark'
-  },
-  {
-    item: 'Phone Number',
-    value: '070123456789'
-  },
-  {
-    item: 'Address',
-    value: 'Winterfell'
-  },
-  {
-    item: 'Date Enrolled',
-    value: '13/7/2020'
-  },
-]
 
-export default function MyList() {
+export default function MyList({obj}) {
+
+  const [data, setData] = useState([])
+
+  console.log(obj)
+
+  useEffect(() =>{
+    setData([
+      {
+        item: 'Age',
+        value: obj.age
+      },
+      {
+        item: 'Gender',
+        value: obj.gender
+      },
+      {
+        item: 'Parent/Gurdian Name',
+        value: obj.parentName
+      },
+      {
+        item: 'Phone Number',
+        value: obj.number
+      },
+      {
+        item: 'Address',
+        value: obj.address
+      },
+    ])
+  }, [])
+
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'inherit' }}

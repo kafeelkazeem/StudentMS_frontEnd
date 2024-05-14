@@ -20,7 +20,7 @@ function App() {
             <Route path='/primary3' element={<Primary3 />} />
             <Route path='/primary4' element={<Primary4 />} />
             <Route path='/primary5' element={<Primary5 />} />
-            <Route path='/:cls/:name' element={<Profile />} />
+            <Route path='/:cls/:id' element={<Profile />} />
           </Routes>
         </BrowserRouter>
       </>

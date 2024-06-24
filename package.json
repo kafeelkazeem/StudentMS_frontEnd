@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@mui/x-charts": "^7.7.1",
     "@mui/x-data-grid": "^6.19.8",
     "@mui/x-date-pickers": "^7.4.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -47,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
   }
 }

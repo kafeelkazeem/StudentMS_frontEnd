@@ -12,8 +12,8 @@ export const nodes = [
         'id': 2,
         'FirstName': 'Janet',
         'LastName': 'Doe',
-        'Gender': 'Femalale',
-        'Status': 'Not Paid',
+        'Gender': 'Female',
+        'Status': 'Owing',
         'Paid': 0,
         'Owing': 1000
     },
@@ -21,8 +21,8 @@ export const nodes = [
         'id': 3,
         'FirstName': 'Janet',
         'LastName': 'Doe',
-        'Gender': 'Femalale',
-        'Status': 'Not Paid',
+        'Gender': 'Female',
+        'Status': 'Paid',
         'Paid': 0,
         'Owing': 1000
     },
@@ -30,7 +30,7 @@ export const nodes = [
         'id': 4,
         'FirstName': 'Janet',
         'LastName': 'Doe',
-        'Gender': 'Femalale',
+        'Gender': 'Female',
         'Status': 'Not Paid',
         'Paid': 0,
         'Owing': 1000
@@ -39,8 +39,8 @@ export const nodes = [
         'id': 5,
         'FirstName': 'Janet',
         'LastName': 'Doe',
-        'Gender': 'Femalale',
-        'Status': 'Not Paid',
+        'Gender': 'Female',
+        'Status': 'Owing',
         'Paid': 0,
         'Owing': 1000
     },

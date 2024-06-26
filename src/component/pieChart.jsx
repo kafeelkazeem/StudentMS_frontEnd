@@ -4,6 +4,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 export default function Pie() {
   return (
     <PieChart
+      colors={['#00897b', '#ffa726', '#e64a19']}
       series={[
         {
           data: [

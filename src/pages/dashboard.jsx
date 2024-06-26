@@ -19,7 +19,7 @@ const DashBoard = () => {
           <p className="text-white text-xl font-semibold">Students Paid</p>
           <p className="text-white text-2xl font-bold mt-12 text-right">150</p> {/* Replace with dynamic data */}
         </div>
-        <div className="bg-yellow-500 p-4 rounded shadow">
+        <div className="bg-orange-400 p-4 rounded shadow">
           <p className="text-white text-xl font-semibold">Students Owing</p>
           <p className="text-white text-2xl font-bold mt-12 text-right">30</p> {/* Replace with dynamic data */}
         </div>

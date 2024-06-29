@@ -10,8 +10,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
 import { nodes } from "../util/data";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Table = () => {
+const Table = (props) => {
   const [filter, setFilter] = React.useState("all");
 
   const data = { nodes: nodes.filter((item) => {
@@ -35,15 +36,20 @@ const Table = () => {
     onChange: onSelectChange,
   });
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const { pathname, search, hash } = location;
+
   function onSelectChange(action, state) {
-    console.log(state);
+    navigate(`${pathname}/profile/${state.id}`)
   }
 
   const COLUMNS = [
     { label: "First Name", renderCell: (item) => item.FirstName, select: true },
     { label: "Last Name", renderCell: (item) => item.LastName },
     { label: "Gender", renderCell: (item) => item.Gender },
-    { label: "Status", renderCell: (item) => item.Status },
+    { label: "Payment Status", renderCell: (item) => item.Status },
     { label: "Paid", renderCell: (item) => item.Paid },
     { label: "Owing", renderCell: (item) => item.Owing },
   ];
@@ -51,7 +57,7 @@ const Table = () => {
   return (
     <>
       <div className="w-full mb-4">
-        <h1 className="text-center xl:text-xl font-bold">PRIMARY 1</h1>
+        <h1 className="text-center xl:text-xl font-bold">{props.class}</h1>
         <div className="flex justify-center my-4">
           <FormControl component="fieldset">
             <RadioGroup

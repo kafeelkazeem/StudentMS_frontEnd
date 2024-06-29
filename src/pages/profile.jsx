@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Toolbar, Button, Paper, Stack, Typography } from '@mui/material';
+import { Box, Toolbar, Button} from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import { useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
+import Avater from '../assets/images/avater.png'
 import EditIcon from '@mui/icons-material/Edit';
-import MyImg from '../images/avater.png';
-import Img from '../component/image';
-import { cyan, green, blue, teal, blueGrey } from '@mui/material/colors';
-import MyList from '../component/list';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import PaymentIcon from '@mui/icons-material/Payment';
-import axios from 'axios';
-import { url } from '../util/url';
 
 
 const Back = () => {
@@ -40,140 +27,73 @@ const Back = () => {
   );
 };
 
-const Edit = () => {
+const ProfileContent = () => {
+  const profileData = [
+    { description: 'First Name', value: 'John' },
+    { description: 'Last Name', value: 'Doe' },
+    { description: 'Gender', value: 'Male' },
+    { description: 'Age', value: '28' },
+    { description: 'Date of Birth', value: '1996-01-15' },
+    { description: 'Parent Name', value: 'Jane Doe' },
+    { description: 'Parent Address', value: '123 Main St, Cityville' },
+    { description: 'Parent Contact', value: '+1234567890' }
+  ];
   return (
-    <Button
-      component="center"
-      variant="contained"
-      sx={{ backgroundColor: cyan[700],}}
-      disableElevation
-      startIcon={<EditIcon />}
-    >
-      Edit Profile
-    </Button>
-  );
-};
-
-const AddPayment = () => {
-  const handleClick = () =>{
-
-  }
-  return(
-    <Button
-        id="demo-customized-button"
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        endIcon={<PaymentIcon />}
-        sx={{backgroundColor: green[600]}}
-      >
-        Make Payment
-      </Button>
+    <>
+      <div>
+        <div className='w-full h-60 flex items-center shadow'>
+          <div className='w-full h-full flex items-center p-4'>
+            <div>
+              <img
+                src={Avater}
+                alt='Profile'
+                className='lg:w-56 lg:h-56 w-16 h-16 rounded-full border-4 border-double'
+              />
+            </div>
+            <div className='flex flex-col justify-between h-full ml-5 p-5'>
+              <div className='text-4xl font-bold'>John Doe</div>
+              <button className='bg-cyan-600 w-full mt-5 text-white px-4 py-2 rounded hover:bg-cyan-800'>
+                Edit Profile 
+                <EditIcon />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='w-full h-60 mt-5 p-2 shadow'>
+          <h1 className='text-center font-bold text-2xl'>PAYMENTS</h1>
+        </div>
+        <div className='w-full h-fit mt-5 p-2 shadow'>
+          <h1 className='text-center font-bold text-2xl'>STUDENT INFORMATION</h1>
+          <div className='w-11/12 p-4 mx-auto'>
+          <ul className='mx-auto'>
+            {profileData.map((item, index) => (
+              <li
+                key={index}
+                className={`flex justify-between p-3 px-5 text-lg ${
+                  index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
+                }`}
+              >
+                <span className='font-bold'>{item.description}</span>
+                <span>{item.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        </div>
+      </div>
+    </>
   )
 }
 
-const PaymentHistory = () => {
-  const handleClick = () =>{
-
-  }
-  return(
-    <Button
-        id="demo-customized-button"
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-        sx={{backgroundColor: blueGrey[500]}}
-      >
-        Payment History
-      </Button>
-  )
-}
-
-function FirstGrid({name}) {
-  return (
-    <Box sx={{ flexGrow: 1, mt: 8 }}>
-      <Paper sx={{ p: 3, backgroundColor: '#EDEFF6' }} elevation={1}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <Img src={MyImg} />
-          </Grid>
-          <Grid item xs={12} md={'auto'}>
-            <Stack spacing={10}>
-              <Typography variant="h3">{name}</Typography>
-              <Edit />
-            </Stack>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Box>
-  );
-}
-
-function SecondGrid({obj}) {
-  // useEffect(() =>{
-  //   console.log(obj)
-  // }, [])
-  return (
-    <Box sx={{ flexGrow: 1, mt: 8 }}>
-    <Grid container spacing={7}>
-      <Grid item lg={7}>
-        <Paper sx={{ p: 3, backgroundColor: '#EDEFF6' }} elevation={1}>
-          <MyList obj={obj} />
-        </Paper>
-      </Grid>
-      <Grid item>
-        <Paper sx={{ p: 3, backgroundColor: '#EDEFF6' }} elevation={1}>
-          <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'inherit' }}
-        subheader={<ListSubheader sx={{bgcolor: 'inherit'}}><Typography variant='h4'>Payment Status</Typography></ListSubheader>}>
-          <ListItem>
-            <ListItemText id="switch-list-label-wifi" primary={<Typography variant='h5' sx={{color: green[500]}}>Paid</Typography>} />
-          </ListItem>
-          <ListItem>
-            <AddPayment />
-          </ListItem>
-          <ListItem></ListItem>
-          <ListItem>
-            <PaymentHistory />
-          </ListItem>
-        </List>
-        </Paper>
-      </Grid>
-    </Grid>
-  </Box>
-  );
-}
 
 const Profile = () => {
-
-  const [name, setName] = useState(null)
-
-  const [obj, setObj] = useState([])
-
-  const {id} = useParams()
-  useEffect(() =>{
-    axios.get(`${url}/getSingleStudent`, {
-      params : {
-        id : id
-      }
-    })
-    .then(result =>{
-      setName(`${result.data.firstName} ${result.data.lastName}`)
-      setObj(result.data)
-    })
-    .catch(err =>{
-      console.log(err)
-    })
-  }, [])
   return (
     <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
       <ResponsiveDrawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: '100%' }}>
         <Toolbar />
         <Back />
-        <FirstGrid name={name} />
-        <SecondGrid obj={obj} />
+        <ProfileContent />
       </Box>
     </Box>
   );

@@ -12,7 +12,7 @@ const Primary1 = () => {
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
             <div className='xl:m-5 m-2 w-full height-full p-5 rounded shadow'>
-                <Table />
+                <Table class='PRIMARY 1' />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />

@@ -67,7 +67,16 @@ const ProfileContent = () => {
               <p className='text-2xl font-bold'>Payment Status: <span className='text-green-600'>Paid</span></p> 
             </div>
             <div className='w-1/4'>
-              <button>Make</button>
+              <Button
+              id="demo-customized-button"
+              variant="contained"
+              disableElevation
+              onClick={handleClick}
+              endIcon={<PaymentIcon />}
+              sx={{backgroundColor: green[600]}}
+              >
+                Make Payment
+              </Button>
             </div>
           </div>
         </div>

@@ -71,7 +71,6 @@ const ProfileContent = () => {
               id="demo-customized-button"
               variant="contained"
               disableElevation
-              onClick={handleClick}
               endIcon={<PaymentIcon />}
               sx={{backgroundColor: green[600]}}
               >

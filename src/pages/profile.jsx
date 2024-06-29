@@ -6,6 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import Avater from '../assets/images/avater.png'
 import EditIcon from '@mui/icons-material/Edit';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 
 const Back = () => {
@@ -61,6 +62,14 @@ const ProfileContent = () => {
         </div>
         <div className='w-full h-60 mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>PAYMENTS</h1>
+          <div className='w-full flex flex-col'>
+            <div className='w-1/4 border-2 rounded flex justify-center items-center py-2'>
+              <p className='text-2xl font-bold'>Payment Status: <span className='text-green-600'>Paid</span></p> 
+            </div>
+            <div className='w-1/4'>
+              <button>Make</button>
+            </div>
+          </div>
         </div>
         <div className='w-full h-fit mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>STUDENT INFORMATION</h1>

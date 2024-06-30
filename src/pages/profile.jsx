@@ -62,7 +62,18 @@ const ProfileContent = () => {
             </div>
           </div>
         </div>
-        <div className='w-full h-60 mt-5 p-2 shadow'>
+        <div className='w-full h-52 flex flex-row p-2 justify-around mt-5 items-center'>
+          <div className='basis-1/4 bg-green-700 h-full rounded shadow'>
+
+          </div>
+          <div className='basis-1/4 bg-amber-900 h-full rounded shadow'>
+
+          </div>
+          <div className='basis-1/4 bg-gray-700 h-full rounded shadow'>
+
+          </div>
+        </div>
+        {/* <div className='w-full h-60 mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>PAYMENTS</h1>
           <div className='w-full flex flex-col p-1 gap-3'>
             <div className='w-1/4 border-2 rounded flex justify-center items-center py-2'>
@@ -75,7 +86,7 @@ const ProfileContent = () => {
               <button className='w-full text-white bg-stone-500 text-2xl py-2 rounded hover:bg-stone-600'>Payment History<PaymentIcon /></button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className='w-full h-fit mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>STUDENT INFORMATION</h1>
           <div className='w-11/12 p-4 mx-auto'>

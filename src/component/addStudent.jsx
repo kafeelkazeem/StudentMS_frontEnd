@@ -58,7 +58,7 @@ const AddStudentForm = ({ open, onClose }) => {
 
   return (
     <Modal
-      open={true}
+      open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

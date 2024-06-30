@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import Avater from '../assets/images/avater.png'
 import EditIcon from '@mui/icons-material/Edit';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import PaymentIcon from '@mui/icons-material/Payment';
+import { green } from '@mui/material/colors';
 
 
 const Back = () => {
@@ -62,20 +64,15 @@ const ProfileContent = () => {
         </div>
         <div className='w-full h-60 mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>PAYMENTS</h1>
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col p-1 gap-3'>
             <div className='w-1/4 border-2 rounded flex justify-center items-center py-2'>
               <p className='text-2xl font-bold'>Payment Status: <span className='text-green-600'>Paid</span></p> 
             </div>
             <div className='w-1/4'>
-              <Button
-              id="demo-customized-button"
-              variant="contained"
-              disableElevation
-              endIcon={<PaymentIcon />}
-              sx={{backgroundColor: green[600]}}
-              >
-                Make Payment
-              </Button>
+              <button className='w-full text-white bg-green-600 text-2xl py-2 rounded hover:bg-green-700'>Record Payment <PaymentIcon /></button>
+            </div>
+            <div className='w-1/4'>
+              <button className='w-full text-white bg-stone-500 text-2xl py-2 rounded hover:bg-stone-600'>Payment History<PaymentIcon /></button>
             </div>
           </div>
         </div>

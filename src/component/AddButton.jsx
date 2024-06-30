@@ -9,6 +9,7 @@ export default function AddButton() {
       <Fab color="primary" size='large' aria-label="add">
         <AddIcon />
       </Fab>
+      <AddStudentForm />
     </>
   );
 }

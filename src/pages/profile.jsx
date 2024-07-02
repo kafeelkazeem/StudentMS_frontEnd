@@ -6,9 +6,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import Avater from '../assets/images/avater.png'
 import EditIcon from '@mui/icons-material/Edit';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import PaymentIcon from '@mui/icons-material/Payment';
-import { green } from '@mui/material/colors';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import HistoryIcon from '@mui/icons-material/History';
 
 
 const Back = () => {
@@ -64,29 +64,24 @@ const ProfileContent = () => {
         </div>
         <div className='w-full h-52 flex flex-row p-2 justify-around mt-5 items-center'>
           <div className='basis-1/4 bg-green-700 h-full rounded shadow'>
-
+            <div className='text-white text-5xl flex justify-end m-2'>
+              <CheckCircleIcon fontSize='inherit' />
+            </div>
+            <p className='text-white text-center text-2xl my-auto mt-4 font-semibold tracking-wider'>PAID</p>
           </div>
-          <div className='basis-1/4 bg-amber-900 h-full rounded shadow'>
-
+          <div className='basis-1/4 bg-amber-900 h-full rounded shadow cursor-pointer'>
+            <div className='text-white text-5xl flex justify-end m-2'>
+              <PaymentsIcon fontSize='inherit' />
+            </div>
+            <p className='text-white text-center text-2xl my-auto mt-4 font-semibold tracking-wider'>MAKE PAYMENT</p>
           </div>
-          <div className='basis-1/4 bg-gray-700 h-full rounded shadow'>
-
+          <div className='basis-1/4 bg-gray-700 h-full rounded shadow cursor-pointer'>
+           <div className='text-white text-5xl flex justify-end m-2'>
+              <HistoryIcon fontSize='inherit' />
+            </div>
+            <p className='text-white text-center text-2xl my-auto mt-4 font-semibold tracking-wider'>PAYMENT HISTORY</p>
           </div>
         </div>
-        {/* <div className='w-full h-60 mt-5 p-2 shadow'>
-          <h1 className='text-center font-bold text-2xl'>PAYMENTS</h1>
-          <div className='w-full flex flex-col p-1 gap-3'>
-            <div className='w-1/4 border-2 rounded flex justify-center items-center py-2'>
-              <p className='text-2xl font-bold'>Payment Status: <span className='text-green-600'>Paid</span></p> 
-            </div>
-            <div className='w-1/4'>
-              <button className='w-full text-white bg-green-600 text-2xl py-2 rounded hover:bg-green-700'>Record Payment <PaymentIcon /></button>
-            </div>
-            <div className='w-1/4'>
-              <button className='w-full text-white bg-stone-500 text-2xl py-2 rounded hover:bg-stone-600'>Payment History<PaymentIcon /></button>
-            </div>
-          </div>
-        </div> */}
         <div className='w-full h-fit mt-5 p-2 shadow'>
           <h1 className='text-center font-bold text-2xl'>STUDENT INFORMATION</h1>
           <div className='w-11/12 p-4 mx-auto'>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Toolbar, Box } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import SearchInput from '../component/search';
@@ -6,8 +6,19 @@ import { red } from '@mui/material/colors';
 import Chart from '../component/barChart';
 import { BarChart } from '@mui/x-charts';
 import Pie from '../component/pieChart';
+import axios from 'axios';
+import { url } from '../util/url';
 
 const DashBoard = () => {
+  useEffect(() =>{
+    axios.get(`${url}/getDashBoard`)
+    .then(res =>{
+      console.log(res) 
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }, [])
   return (
     <div className="w-full h-full p-2">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full">

@@ -34,7 +34,6 @@ const AddStudentForm = ({ open, onClose }) => {
     axios.post(`${url}/addStudent`, {
       firstName : firstName,
       lastName : lastName,
-      age: 12,
       dob : dob,
       cls : cls,
       section : section,

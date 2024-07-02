@@ -9,10 +9,13 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
-import { nodes } from "../util/data";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Table = (props) => {
+import nodes from '../util/data'
+
+
+
+const Table = ({cls}) => {
   const [filter, setFilter] = React.useState("all");
 
   const data = { nodes: nodes.filter((item) => {
@@ -42,7 +45,7 @@ const Table = (props) => {
   const { pathname, search, hash } = location;
 
   function onSelectChange(action, state) {
-    navigate(`${pathname}/profile/${state.id}`)
+    navigate(`${pathname}/profile/${state._id}`)
   }
 
   const COLUMNS = [
@@ -57,7 +60,7 @@ const Table = (props) => {
   return (
     <>
       <div className="w-full mb-4">
-        <h1 className="text-center xl:text-xl font-bold">{props.class}</h1>
+        <h1 className="text-center xl:text-xl font-bold">{cls}</h1>
         <div className="flex justify-center my-4">
           <FormControl component="fieldset">
             <RadioGroup

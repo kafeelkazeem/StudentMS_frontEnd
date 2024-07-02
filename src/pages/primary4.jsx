@@ -9,7 +9,7 @@ import { url } from '../util/url'
 
 const Primary4 = () => {
 
-  const [Students, setStudents] = useState({})
+  const [Students, setStudents] = useState([])
 
   useEffect(() =>{
     axios.get(`${url}/getAllStudentPerClass`, {
@@ -28,7 +28,7 @@ const Primary4 = () => {
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
             <div className='xl:m-5 m-2 w-full h-full p-5 rounded shadow'>
-                <Table class='PRIMARY 4' nodes={Students} />
+                <Table cls='PRIMARY 4' nodes={Students} />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />

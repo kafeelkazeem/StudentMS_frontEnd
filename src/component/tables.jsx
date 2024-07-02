@@ -11,18 +11,17 @@ import FormControl from "@mui/material/FormControl";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import nodes from '../util/data'
+const Table = ({cls, nodes}) => {
 
-
-
-const Table = ({cls}) => {
   const [filter, setFilter] = React.useState("all");
+
+  console.log(nodes)
 
   const data = { nodes: nodes.filter((item) => {
     if (filter === "all") return true;
-    if (filter === 'Paid') return item.Status === 'Paid';
-    if (filter === "Owing") return item.Status === 'Owing';
-    if (filter === "Not Paid") return item.Status === 'Not Paid';
+    if (filter === 'Paid') return item.status === 'paid';
+    if (filter === "Owing") return item.status === 'owing';
+    if (filter === "Not Paid") return item.status === 'not paid';
     return true;
   }) };
 
@@ -45,16 +44,16 @@ const Table = ({cls}) => {
   const { pathname, search, hash } = location;
 
   function onSelectChange(action, state) {
-    navigate(`${pathname}/profile/${state._id}`)
+    navigate(`${pathname}/profile/${state.id}`)
   }
 
   const COLUMNS = [
-    { label: "First Name", renderCell: (item) => item.FirstName, select: true },
-    { label: "Last Name", renderCell: (item) => item.LastName },
-    { label: "Gender", renderCell: (item) => item.Gender },
-    { label: "Payment Status", renderCell: (item) => item.Status },
-    { label: "Paid", renderCell: (item) => item.Paid },
-    { label: "Owing", renderCell: (item) => item.Owing },
+    { label: "First Name", renderCell: (item) => item.firstName, select: true },
+    { label: "Last Name", renderCell: (item) => item.lastName },
+    { label: "Gender", renderCell: (item) => item.gender },
+    { label: "Payment Status", renderCell: (item) => item.status },
+    { label: "Paid", renderCell: (item) => item.paid },
+    { label: "Owing", renderCell: (item) => item.owing },
   ];
 
   return (

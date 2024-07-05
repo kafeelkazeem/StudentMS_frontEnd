@@ -14,7 +14,6 @@ const DashBoard = () => {
   const [totalStudentOwing, setTotalStudentOwing] = useState(null)
   const [totalStudentNotPaid, setTotalStudentNotPaid] = useState(null)
   const [primaryBarChart, setPrimaryBarChart] = useState([])
-  const [pieChart, setPieChart] = useState([])
 
   useEffect(() =>{
     axios.get(`${url}/getDashBoard`)
@@ -29,8 +28,6 @@ const DashBoard = () => {
       console.log(err)
     })
   }, [])
-
-  console.log(primaryBarChart)
 
   return (
     <div className="w-full h-full p-2">

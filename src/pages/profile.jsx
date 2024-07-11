@@ -9,6 +9,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import HistoryIcon from '@mui/icons-material/History';
+import axios from 'axios';
+import { url } from '../util/url';
+import { calculateAge } from '../util/helper';
 
 
 const Back = () => {
@@ -31,15 +34,47 @@ const Back = () => {
 };
 
 const ProfileContent = () => {
+  const {id} = useParams()
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [dob, setDob] = useState('')
+  const [gender, setGender] = useState('')
+  const [cls, setCls] = useState('')
+  const [section, setSection] = useState('')
+  const [parentName, setParentName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [address, setAddress] = useState('')
+
+  useEffect(()=>{
+    axios.get(`${url}/getSingleStudent`, {
+      params : {
+        id: id
+      }}
+    )
+    .then(res =>{
+      setFirstName(res.data.firstName)
+      setLastName(res.data.lastName)
+      setDob(res.data.dob)
+      setGender(res.data.gender)
+      setCls(res.data.cls)
+      setSection(res.data.section)
+      setParentName(res.data.parentName)
+      setPhoneNumber(res.data.phoneNumber)
+      setAddress(res.data.address)
+
+    })
+    .catch(err => console.log(err))
+  }, [id])
+
   const profileData = [
-    { description: 'First Name', value: 'John' },
-    { description: 'Last Name', value: 'Doe' },
-    { description: 'Gender', value: 'Male' },
-    { description: 'Age', value: '28' },
-    { description: 'Date of Birth', value: '1996-01-15' },
-    { description: 'Parent Name', value: 'Jane Doe' },
-    { description: 'Parent Address', value: '123 Main St, Cityville' },
-    { description: 'Parent Contact', value: '+1234567890' }
+    { description: 'First Name', value: firstName },
+    { description: 'Last Name', value: lastName },
+    { description: 'Gender', value: gender },
+    { description: 'Age', value: calculateAge(dob) },
+    { description: 'Date of Birth', value: dob },
+    { description: 'Parent Name', value: parentName },
+    { description: 'Parent Address', value: address },
+    { description: 'Parent Contact', value: phoneNumber }
   ];
   return (
     <>
@@ -54,7 +89,7 @@ const ProfileContent = () => {
               />
             </div>
             <div className='flex flex-col justify-between h-full ml-5 p-5'>
-              <div className='text-4xl font-bold'>John Doe</div>
+              <div className='text-4xl font-bold'>{`${firstName} ${lastName}`}</div>
               <button className='bg-cyan-600 w-full mt-5 text-white px-4 py-2 rounded hover:bg-cyan-800'>
                 Edit Profile 
                 <EditIcon />

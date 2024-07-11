@@ -39,7 +39,7 @@ const AddStudentForm = ({ open, onClose }) => {
       section : section,
       gender : gender,
       parentName : parentName,
-      PhoneNumber : phoneNumber,
+      phoneNumber : phoneNumber,
       address : address,
       status : status,
       paid : paid,

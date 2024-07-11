@@ -40,7 +40,7 @@ const DashBoard = () => {
           <p className="text-white text-xl font-semibold">Students Paid</p>
           <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentPaid}</p> 
         </div>
-        <div className="bg-orange-400 p-4 rounded shadow">
+        <div className="bg-orange-400 p-4 rounded shadow ">
           <p className="text-white text-xl font-semibold">Students Owing</p>
           <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentOwing}</p> 
         </div>

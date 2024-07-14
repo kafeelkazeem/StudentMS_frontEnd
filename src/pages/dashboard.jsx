@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Toolbar, Box } from '@mui/material';
+import { Toolbar, Box, Skeleton } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import SearchInput from '../component/search';
 import Chart from '../component/barChart';
@@ -14,6 +14,7 @@ const DashBoard = () => {
   const [totalStudentOwing, setTotalStudentOwing] = useState(null)
   const [totalStudentNotPaid, setTotalStudentNotPaid] = useState(null)
   const [primaryBarChart, setPrimaryBarChart] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() =>{
     axios.get(`${url}/getDashBoard`)
@@ -22,7 +23,8 @@ const DashBoard = () => {
       setTotalStudentPaid(res.data.totalStudentPaid)
       setTotalStudentOwing(res.data.totalStudentOwing)
       setTotalStudentNotPaid(res.data.totalStudentNotPaid)
-      setPrimaryBarChart(res.data.primaryBarChartData) 
+      setPrimaryBarChart(res.data.primaryBarChartData)
+      setLoading(false) 
     })
     .catch(err =>{
       console.log(err)
@@ -32,22 +34,33 @@ const DashBoard = () => {
   return (
     <div className="w-full h-full p-2">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full">
-        <div className="bg-blue-500 p-4 md:max-w-screen-sm rounded shadow">
-          <p className="text-white text-xl font-semibold">Total Student</p>
-          <p className="text-white text-2xl font-bold lg:mt-12 mt-6 text-right">{totalStudent}</p>
-        </div>
-        <div className="bg-green-600 p-4 rounded shadow">
-          <p className="text-white text-xl font-semibold">Students Paid</p>
-          <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentPaid}</p> 
-        </div>
-        <div className="bg-orange-400 p-4 rounded shadow ">
-          <p className="text-white text-xl font-semibold">Students Owing</p>
-          <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentOwing}</p> 
-        </div>
-        <div className="bg-red-500 p-4 rounded shadow">
-          <p className="text-white text-xl font-semibold">Students Not Paid</p>
-          <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentNotPaid}</p> 
-        </div>
+        {loading ? (
+          <>
+          <Skeleton variant='rectangular' className='md:max-w-screen-sm' height={150} />
+          <Skeleton variant='rectangular' className='md:max-w-screen-sm' height={150} />
+          <Skeleton variant='rectangular' className='md:max-w-screen-sm' height={150} />
+          <Skeleton variant='rectangular' className='md:max-w-screen-sm' height={150} />
+          </>
+        ) : (
+          <>
+          <div className="bg-blue-500 p-4 md:max-w-screen-sm rounded shadow">
+            <p className="text-white text-xl font-semibold">Total Student</p>
+            <p className="text-white text-2xl font-bold lg:mt-12 mt-6 text-right">{totalStudent}</p>
+          </div>
+          <div className="bg-green-600 p-4 rounded shadow">
+            <p className="text-white text-xl font-semibold">Students Paid</p>
+            <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentPaid}</p> 
+          </div>
+          <div className="bg-orange-400 p-4 rounded shadow ">
+            <p className="text-white text-xl font-semibold">Students Owing</p>
+            <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentOwing}</p> 
+          </div>
+          <div className="bg-red-500 p-4 rounded shadow">
+            <p className="text-white text-xl font-semibold">Students Not Paid</p>
+            <p className="text-white text-2xl font-bold mt-12 text-right">{totalStudentNotPaid}</p> 
+          </div>
+          </>
+        )}
       </div>
       <div className='w-full flex flex-row lg:flex-col mt-3 justify-between'>
          <div className='lg:basis-3/4 bg-white shadow rounded p-3'>

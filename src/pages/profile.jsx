@@ -35,6 +35,18 @@ const Back = () => {
 };
 
 const ProfileContent = () => {
+
+  const [openPaymentModal, setOpenAddPaymentModal] = React.useState(false)
+
+
+  const handleCloseAddPaymentModal = () =>{
+    setOpenAddPaymentModal(false)
+  }
+
+  const handleOpenPaymentModal = () =>{
+    setOpenAddPaymentModal(true)
+  }
+
   const { id } = useParams();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

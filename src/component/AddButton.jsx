@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import AddStudentForm from './addStudent';
+import AddStudentForm from './form/addStudent';
 
 export default function AddButton() {
   const [openAddStudentModal, setOpenAddStudentModal] = React.useState(false)

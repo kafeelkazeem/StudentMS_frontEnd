@@ -13,7 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
-import { url } from '../util/url';
+import { url } from '../../util/url';
 
 const AddStudentForm = ({ open, onClose }) => {
 

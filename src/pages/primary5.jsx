@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Toolbar } from '@mui/material'
 import ResponsiveDrawer from '../component/Drawer'
 import Table from '../component/tables'
-import AddButton from '../component/AddButton'
+import AddButton from '../component/buttons/AddButton'
 import axios from 'axios'
 import { url } from '../util/url'
 

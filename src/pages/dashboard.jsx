@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { Toolbar, Box, Skeleton } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import SearchInput from '../component/search';
-import Chart from '../component/barChart';
-import Pie from '../component/pieChart';
+import Chart from '../component/charts/barChart';
+import Pie from '../component/charts/pieChart';
 import axios from 'axios';
 import { url } from '../util/url';
 

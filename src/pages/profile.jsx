@@ -14,6 +14,7 @@ import { url } from '../util/url';
 import { calculateAge } from '../util/helper';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+import MakePayment from '../component/form/makePayment';
 
 const Back = () => {
   const navigate = useNavigate();
@@ -156,7 +157,7 @@ const ProfileContent = () => {
                   </p>
                 </div>
               )}
-              <div className="basis-1/4 bg-amber-900 h-full rounded shadow cursor-pointer">
+              <div onClick={handleOpenPaymentModal} className="basis-1/4 bg-amber-900 h-full rounded shadow cursor-pointer">
                 <div className="text-white text-5xl flex justify-end m-2">
                   <PaymentsIcon fontSize="inherit" />
                 </div>
@@ -206,6 +207,7 @@ const ProfileContent = () => {
           </div>
         </div>
       </div>
+      <MakePayment open={openPaymentModal} onClose={handleCloseAddPaymentModal} studentId={id} />
     </>
   );
 };

@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import { Stack, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
-import { url } from '../util/url';
+import { url } from '../../util/url';
 
-const MakePayment = ({ open, onClose }) => {
+const MakePayment = ({ open, onClose, studentId }) => {
+    const [payerName, setPayerName] = useState(null)
+    const [phoneNumber, setPhoneNumber] = useState(null)
+    const [date, setDate] = useState(null)
+    const [amountPaid, setAmountPaid] = useState(null)
+    
+    const handleSubmit = () =>{
+        axios.post(`${url}/makePayment`, {
+            payerName: payerName,
+            phoneNumber: phoneNumber,
+            date: date,
+            amountPaid: amountPaid,
+            paidTo: studentId,
+        })
+        .then(res =>{
+            onClose()
+            alert('Paid')
+        })
+        .catch(err => console.log(err))
+    }
+
   return (
     <Modal
       open={open}
@@ -49,7 +62,7 @@ const MakePayment = ({ open, onClose }) => {
               name="PhoneNumber"
               label="Phone Number"
               value= {phoneNumber}
-              onChange={(e) => setNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
             <TextField
                 id="date"
@@ -65,10 +78,10 @@ const MakePayment = ({ open, onClose }) => {
               name="Amount"
               label="Amount Paid"
               type='number'
-              value= {ampuntPaidr}
+              value= {amountPaid}
               onChange={(e) => setAmountPaid(e.target.value)}
             />
-            <Button onClick={handleSubmit} variant='contained'>Add</Button>
+            <Button onClick={handleSubmit} variant='contained'>Make Payment</Button>
           </Stack>
         </FormControl>
       </Box>

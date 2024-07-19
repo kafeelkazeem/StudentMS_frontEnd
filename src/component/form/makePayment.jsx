@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -26,7 +26,9 @@ const MakePayment = ({ open, onClose, studentId }) => {
             onClose()
             alert('Paid')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          alert(err)
+        })
     }
 
   return (

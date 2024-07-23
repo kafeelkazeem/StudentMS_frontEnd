@@ -33,9 +33,8 @@ const DashBoard = () => {
   }, []);
 
   return (
-    <div className={`w-full h-full`}>
+    <div className={`w-full h-full p-2 ${loading ? 'blur-background' : ''}`}>
       {loading && <Loading />}
-      <div className={`w-full h-full p-2 ${loading ? 'blur-background' : ''} `}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full">
           <div className="bg-blue-500 p-4 md:max-w-screen-sm rounded shadow">
             <p className="text-white text-xl font-semibold">Total Student</p>
@@ -63,7 +62,6 @@ const DashBoard = () => {
           <Pie paid={totalStudentPaid} owing={totalStudentOwing} notPaid={totalStudentNotPaid} />
         </div>
       </div>
-    </div>
     </div>
   );
 };

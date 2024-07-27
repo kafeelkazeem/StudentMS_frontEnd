@@ -6,13 +6,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -79,7 +77,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {['Dash Board'].map((text, index) => (
-          <Link to='/' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
+          <Link to='/dashboard' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <DashboardIcon />

@@ -30,7 +30,7 @@ const DashBoard = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [totalStudent, totalStudentPaid, totalStudentOwing, totalStudentNotPaid, primaryBarChart, loading]);
 
   return (
     <div className={`w-full h-full p-2 ${loading ? 'blur-background' : ''}`}>

@@ -18,6 +18,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Settings } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -100,6 +101,17 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem></Link>
         ))}
+      </List>
+      <Divider />
+      <List>
+        <Link to='/settings' style={{textDecoration: 'none', color: 'black'}}>
+          <ListItemButton>
+            <ListItemIcon>
+              <Settings />
+            </ListItemIcon>
+            <ListItemText primary='Settings' />
+          </ListItemButton>
+        </Link> 
       </List>
     </div>
   );

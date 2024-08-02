@@ -10,6 +10,7 @@ import Primary5 from './pages/primary5';
 import Profile from './pages/profile';
 import SignIn from './pages/signIn';
 import PrivateRoute from './component/privateRoute';
+import { Settings } from '@mui/icons-material';
 function App() {
     useEffect(() => {
     // Function to clear token on tab/window close
@@ -17,7 +18,7 @@ function App() {
         localStorage.removeItem('token');
       };
 
-    // Add event listener for beforeunload
+    // event listener for beforeunload
       window.addEventListener('beforeunload', handleBeforeUnload);
 
     // Cleanup function to remove the event listener
@@ -37,6 +38,7 @@ function App() {
             <Route path='/primary4' element={<PrivateRoute> <Primary4 /> </PrivateRoute>} />
             <Route path='/primary5' element={<PrivateRoute> <Primary5 /> </PrivateRoute>} />
             <Route path='/:cls/profile/:id' element={<PrivateRoute> <Profile /> </PrivateRoute>} />
+            <Route path='/settings' element={<PrivateRoute> <Settings /> </PrivateRoute>} />
           </Routes>
         </BrowserRouter>
       </>

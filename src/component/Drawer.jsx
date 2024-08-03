@@ -141,8 +141,8 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Student Management System
+          <Typography className='tracking-widest text-3xl' variant="h6" noWrap component="div">
+            School Management System
           </Typography>
         </Toolbar>
       </AppBar>
@@ -153,7 +153,6 @@ function ResponsiveDrawer(props) {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onTransitionEnd={handleDrawerTransitionEnd}

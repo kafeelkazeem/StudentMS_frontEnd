@@ -15,6 +15,7 @@ import { calculateAge } from '../util/helper';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import MakePayment from '../component/form/makePayment';
+import { white } from '../util/colors';
 
 const Back = () => {
   const navigate = useNavigate();
@@ -98,7 +99,7 @@ const ProfileContent = () => {
   return (
     <>
       <div>
-        <div className="w-full h-60 flex items-center shadow">
+        <div style={{backgroundColor: white}} className="w-full h-60 flex items-center shadow">
           <div className="w-full h-full flex items-center p-4">
             <div>
               <img
@@ -214,7 +215,7 @@ const ProfileContent = () => {
 
 const Profile = () => {
   return (
-    <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
+    <Box sx={{ display: 'flex', overflowX: 'hidden', backgroundColor: white }}>
       <ResponsiveDrawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: '100%' }}>
         <Toolbar />

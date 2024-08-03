@@ -7,21 +7,16 @@ import FormControl from "@mui/material/FormControl";
 import { useLocation, useNavigate } from "react-router-dom";
 import { darkBlue, white } from "../util/colors";
 
-const Table = ({ cls, nodes }) => {
+const Table = ({ cls, nodes, loading }) => {
   const [filter, setFilter] = useState("all");
-  const [loading, setLoading] = useState(true); // Add loading state
 
-  // Simulate fetching data from a server
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      // Simulate a network request with a timeout
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setLoading(false);
+    const isLoading = () => {
+      
     };
 
-    fetchData();
-  }, []); // Run only once when the component mounts
+    isLoading();
+  }, []); 
 
   const filteredData = useMemo(
     () =>
@@ -83,7 +78,7 @@ const Table = ({ cls, nodes }) => {
     <>
       <div className="w-full mb-4">
         <h1 className="text-center xl:text-xl font-bold">{cls}</h1>
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center my-2">
           <FormControl component="fieldset">
             <RadioGroup
               row
@@ -136,7 +131,6 @@ const Table = ({ cls, nodes }) => {
         </thead>
         <tbody {...getTableBodyProps()}>
           {loading ? (
-            // Render loading indicator
             <tr>
               <td colSpan={columns.length} style={{ textAlign: "center", padding: "20px" }}>
                 Loading...
@@ -152,14 +146,14 @@ const Table = ({ cls, nodes }) => {
                   {...row.getRowProps()}
                   style={{
                     cursor: "pointer",
-                    backgroundColor: isSelected ? "#f1f1f1" : "inherit",
+                    backgroundColor: isSelected ? "grey" : "inherit",
                   }}
                   onClick={() => handleRowClick(row)}
                 >
                   {row.cells.map((cell) => (
                     <td
                       {...cell.getCellProps()}
-                      style={{ padding: "8px", borderBottom: "1px solid grey" }}
+                      style={{ padding: "10px", borderBottom: "1px solid #415a77" }}
                     >
                       {cell.render("Cell")}
                     </td>

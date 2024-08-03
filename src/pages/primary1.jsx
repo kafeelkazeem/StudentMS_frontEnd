@@ -11,6 +11,7 @@ import { white } from '../util/colors'
 const Primary1 = () => {
 
   const [Students, setStudents] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() =>{
     axios.get(`${url}/getAllStudentPerClass`, {
@@ -20,6 +21,7 @@ const Primary1 = () => {
     })
     .then(res =>{
       setStudents(res.data)
+      setLoading(false)
     })
     .catch(err => console.log(err))
   }, [])
@@ -30,7 +32,7 @@ const Primary1 = () => {
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
             <div className='xl:m-5 m-2 w-full h-full p-5 rounded shadow'>
-                <Table cls='PRIMARY 1' nodes={Students} />
+                <Table cls='PRIMARY 1' nodes={Students} loading={loading} />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />

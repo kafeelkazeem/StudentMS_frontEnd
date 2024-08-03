@@ -36,7 +36,8 @@ const DashBoard = () => {
   return (
     <div style={{backgroundColor: white}} className={`w-full h-full p-2 ${loading ? 'blur-background' : ''}`}>
       {loading && <Loading />}
-      <div style={{backgroundColor: white}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full">
+      <h1 className='text-3xl font-bold text-left tracking-wide'>Dash Board</h1>
+      <div style={{backgroundColor: white}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full mt-6">
           <div className="bg-blue-500 p-4 md:max-w-screen-sm rounded shadow">
             <p className="text-white text-xl font-semibold">Total Student</p>
             <p className="text-white text-2xl font-bold lg:mt-12 mt-6 text-right">{totalStudent}</p>

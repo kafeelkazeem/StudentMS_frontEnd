@@ -1,61 +1,83 @@
-import * as React from "react";
-import { CompactTable } from "@table-library/react-table-library/compact";
-import { useTheme } from "@table-library/react-table-library/theme";
-import { getTheme } from "@table-library/react-table-library/baseline";
-import { useRowSelect } from "@table-library/react-table-library/select";
-
+import React, { useMemo, useState, useEffect } from "react";
+import { useTable } from "react-table";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-
 import { useLocation, useNavigate } from "react-router-dom";
-import { white } from "../util/colors";
+import { darkBlue, white } from "../util/colors";
 
-const Table = ({cls, nodes}) => {
+const Table = ({ cls, nodes }) => {
+  const [filter, setFilter] = useState("all");
+  const [loading, setLoading] = useState(true); // Add loading state
 
-  const [filter, setFilter] = React.useState("all");
+  // Simulate fetching data from a server
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      // Simulate a network request with a timeout
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setLoading(false);
+    };
 
-  console.log(nodes)
+    fetchData();
+  }, []); // Run only once when the component mounts
 
-  const data = { nodes: nodes.filter((item) => {
-    if (filter === "all") return true;
-    if (filter === 'Paid') return item.status === 'paid';
-    if (filter === "Owing") return item.status === 'owing';
-    if (filter === "Not Paid") return item.status === 'not paid';
-    return true;
-  }) };
+  const filteredData = useMemo(
+    () =>
+      nodes.filter((item) => {
+        if (filter === "all") return true;
+        if (filter === "Paid") return item.status === "paid";
+        if (filter === "Owing") return item.status === "owing";
+        if (filter === "Not Paid") return item.status === "not paid";
+        return true;
+      }),
+    [filter, nodes]
+  );
 
-  const theme = useTheme([
-    getTheme(),
-    {
-       Table: `
-        --data-table-library_grid-template-columns:  44px repeat(5, minmax(0, 1fr));
-      `,
-    },
-  ]);
+  const data = useMemo(() => filteredData, [filteredData]);
 
-  const select = useRowSelect(data, {
-    onChange: onSelectChange,
+  const columns = useMemo(
+    () => [
+      { Header: "First Name", accessor: "firstName" },
+      { Header: "Last Name", accessor: "lastName" },
+      { Header: "Gender", accessor: "gender" },
+      { Header: "Payment Status", accessor: "status" },
+      { Header: "Paid", accessor: "paid" },
+      { Header: "Owing", accessor: "owing" },
+    ],
+    []
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data,
   });
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
-  const { pathname, search, hash } = location;
+  // State to track selected row
+  const [selectedRowId, setSelectedRowId] = useState(null);
 
-  function onSelectChange(action, state) {
-    navigate(`${pathname}/profile/${state.id}`)
-  }
-
-  const COLUMNS = [
-    { label: "First Name", renderCell: (item) => item.firstName, select: true },
-    { label: "Last Name", renderCell: (item) => item.lastName },
-    { label: "Gender", renderCell: (item) => item.gender },
-    { label: "Payment Status", renderCell: (item) => item.status },
-    { label: "Paid", renderCell: (item) => item.paid },
-    { label: "Owing", renderCell: (item) => item.owing },
-  ];
+  // Handle row click to select
+  const handleRowClick = (row) => {
+    const newRowId = row.original.id;
+    if (selectedRowId === newRowId) {
+      // Deselect if the same row is clicked again
+      setSelectedRowId(null);
+    } else {
+      setSelectedRowId(newRowId);
+      navigate(`${pathname}/profile/${newRowId}`);
+    }
+  };
 
   return (
     <>
@@ -70,22 +92,84 @@ const Table = ({cls, nodes}) => {
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             >
-              <FormControlLabel value="all" control={<Radio />} label="View all"  />
-              <FormControlLabel value="Paid"  control={<Radio sx={{'&.Mui-checked': { color: '#00897b' }}} />}  label="Paid" />
-              <FormControlLabel value="Owing" control={<Radio sx={{'&.Mui-checked': { color: '#ffa726' }}} />} label="Owing" />
-              <FormControlLabel value="Not Paid" control={<Radio sx={{'&.Mui-checked': { color: '#e64a19' }}} />} label="Not Paid" />
+              <FormControlLabel value="all" control={<Radio />} label="View all" />
+              <FormControlLabel
+                value="Paid"
+                control={<Radio sx={{ "&.Mui-checked": { color: "#00897b" } }} />}
+                label="Paid"
+              />
+              <FormControlLabel
+                value="Owing"
+                control={<Radio sx={{ "&.Mui-checked": { color: "#ffa726" } }} />}
+                label="Owing"
+              />
+              <FormControlLabel
+                value="Not Paid"
+                control={<Radio sx={{ "&.Mui-checked": { color: "#e64a19" } }} />}
+                label="Not Paid"
+              />
             </RadioGroup>
           </FormControl>
         </div>
       </div>
-      <CompactTable
-        columns={COLUMNS}
-        data={data}
-        theme={theme}
-        layout={{ custom: true }}
-        select={select}
-        style={{backgroundColor: white}}
-      />
+
+      <table
+        {...getTableProps()}
+        style={{ backgroundColor: white, width: "100%", borderCollapse: "collapse" }}
+      >
+        <thead
+          className="text-white text-lg tracking-widest rounded-2xl"
+          style={{ backgroundColor: darkBlue, color: "#fff" }}
+        >
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps()}
+                  style={{ padding: "10px", borderBottom: "1px solid black" }}
+                >
+                  {column.render("Header")}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {loading ? (
+            // Render loading indicator
+            <tr>
+              <td colSpan={columns.length} style={{ textAlign: "center", padding: "20px" }}>
+                Loading...
+              </td>
+            </tr>
+          ) : (
+            rows.map((row) => {
+              prepareRow(row);
+              const isSelected = row.original.id === selectedRowId;
+              return (
+                <tr
+                  className="text-base tracking-wider hover:bg-slate-700"
+                  {...row.getRowProps()}
+                  style={{
+                    cursor: "pointer",
+                    backgroundColor: isSelected ? "#f1f1f1" : "inherit",
+                  }}
+                  onClick={() => handleRowClick(row)}
+                >
+                  {row.cells.map((cell) => (
+                    <td
+                      {...cell.getCellProps()}
+                      style={{ padding: "8px", borderBottom: "1px solid grey" }}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })
+          )}
+        </tbody>
+      </table>
     </>
   );
 };

@@ -5,6 +5,7 @@ import Table from '../component/tables'
 import AddButton from '../component/buttons/AddButton'
 import axios from 'axios'
 import { url } from '../util/url'
+import { white } from '../util/colors'
 
 
 const Primary1 = () => {
@@ -24,7 +25,7 @@ const Primary1 = () => {
   }, [])
   console.log(Students)
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', backgroundColor: white }}>
         <ResponsiveDrawer />
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />

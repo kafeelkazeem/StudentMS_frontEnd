@@ -10,6 +10,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { white } from "../util/colors";
 
 const Table = ({cls, nodes}) => {
 
@@ -83,6 +84,7 @@ const Table = ({cls, nodes}) => {
         theme={theme}
         layout={{ custom: true }}
         select={select}
+        style={{backgroundColor: white}}
       />
     </>
   );

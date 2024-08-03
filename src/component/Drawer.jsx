@@ -19,6 +19,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Settings } from '@mui/icons-material';
+import { darkBlue, darkerBlue, white } from '../util/colors';
 
 const drawerWidth = 240;
 
@@ -127,7 +128,7 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: '#06547b',
+          backgroundColor: darkerBlue,
         }}
       >
         <Toolbar>
@@ -147,7 +148,7 @@ function ResponsiveDrawer(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, backgroundColor: darkBlue}}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -162,7 +163,7 @@ function ResponsiveDrawer(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth},
           }}
         >
           {drawer}
@@ -170,8 +171,9 @@ function ResponsiveDrawer(props) {
         <Drawer
           variant="permanent"
           sx={{
+            backgroundColor: white,
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: white },
           }}
           open
         >

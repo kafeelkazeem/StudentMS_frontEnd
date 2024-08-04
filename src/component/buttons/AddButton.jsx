@@ -2,8 +2,10 @@ import * as React from 'react';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import AddStudentForm from '../form/addStudent';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddButton() {
+  const navigate = useNavigate()
   const [openAddStudentModal, setOpenAddStudentModal] = React.useState(false)
 
 
@@ -12,7 +14,8 @@ export default function AddButton() {
   }
 
   const handleOpenStudentModal = () =>{
-    setOpenAddStudentModal(true)
+    // setOpenAddStudentModal(true)
+    navigate('/addmissionForm')
   }
 
   return (
@@ -20,7 +23,7 @@ export default function AddButton() {
       <Fab color="primary" size='large' aria-label="add" onClick={handleOpenStudentModal}>
         <AddIcon />
       </Fab>
-      <AddStudentForm open={openAddStudentModal} onClose={handleCloseAddStudentModal} />
+      {/* <AddStudentForm open={openAddStudentModal} onClose={handleCloseAddStudentModal} /> */}
     </>
   );
 }

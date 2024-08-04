@@ -82,7 +82,7 @@ function ResponsiveDrawer(props) {
           <Link to='/dashboard' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon color={darkerBlue} />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -96,7 +96,7 @@ function ResponsiveDrawer(props) {
           <Link to={i.path} style={{textDecoration: 'none', color: 'black'}}><ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <SchoolIcon />
+                <SchoolIcon color={darkerBlue} />
               </ListItemIcon>
               <ListItemText primary={i.title} />
             </ListItemButton>
@@ -108,7 +108,7 @@ function ResponsiveDrawer(props) {
         <Link to='/settings' style={{textDecoration: 'none', color: 'black'}}>
           <ListItemButton>
             <ListItemIcon>
-              <Settings />
+              <Settings color={darkerBlue} />
             </ListItemIcon>
             <ListItemText primary='Settings' />
           </ListItemButton>
@@ -116,9 +116,6 @@ function ResponsiveDrawer(props) {
       </List>
     </div>
   );
-
-  // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
       <>

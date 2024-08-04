@@ -11,6 +11,7 @@ import Profile from './pages/profile';
 import SignIn from './pages/signIn';
 import PrivateRoute from './component/privateRoute';
 import { Settings } from '@mui/icons-material';
+import AddmissionForm from './pages/addmissionForm';
 function App() {
     useEffect(() => {
     // Function to clear token on tab/window close
@@ -37,6 +38,7 @@ function App() {
             <Route path='/primary3' element={<PrivateRoute> <Primary3 /> </PrivateRoute>} />
             <Route path='/primary4' element={<PrivateRoute> <Primary4 /> </PrivateRoute>} />
             <Route path='/primary5' element={<PrivateRoute> <Primary5 /> </PrivateRoute>} />
+            <Route path='/addmissionForm' element={<PrivateRoute> <AddmissionForm /> </PrivateRoute>} />
             <Route path='/:cls/profile/:id' element={<PrivateRoute> <Profile /> </PrivateRoute>} />
             <Route path='/settings' element={<PrivateRoute> <Settings /> </PrivateRoute>} />
           </Routes>

@@ -10,8 +10,10 @@ import Primary5 from './pages/primary5';
 import Profile from './pages/profile';
 import SignIn from './pages/signIn';
 import PrivateRoute from './component/privateRoute';
-import { Settings } from '@mui/icons-material';
 import AddmissionForm from './pages/addmissionForm';
+import Settings from './pages/settings';
+import SchoolFees from './pages/schoolFees';
+
 function App() {
     useEffect(() => {
     // Function to clear token on tab/window close
@@ -41,6 +43,7 @@ function App() {
             <Route path='/addmissionForm' element={<PrivateRoute> <AddmissionForm /> </PrivateRoute>} />
             <Route path='/:cls/profile/:id' element={<PrivateRoute> <Profile /> </PrivateRoute>} />
             <Route path='/settings' element={<PrivateRoute> <Settings /> </PrivateRoute>} />
+            <Route path='/settings/schoolFees' element={<PrivateRoute> <SchoolFees /></PrivateRoute>} />
           </Routes>
         </BrowserRouter>
       </>

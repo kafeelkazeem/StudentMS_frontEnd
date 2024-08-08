@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Toolbar,
@@ -11,6 +11,7 @@ import {
   TableRow,
   Paper,
   TextField,
+  Skeleton,
 } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -18,6 +19,8 @@ import { useNavigate } from 'react-router-dom';
 import { white } from '../util/colors';
 import { NigeriaNaira } from '../util/helper';
 import EditIcon from '@mui/icons-material/Edit';
+import axios from 'axios'
+import { url } from '../util/url'
 
 const Back = () => {
   const navigate = useNavigate();
@@ -39,11 +42,28 @@ const Back = () => {
 
 const Content = () => {
   const [fees, setFees] = useState({
-    nursery: NigeriaNaira.format(5000),
-    primary: NigeriaNaira.format(7000),
-    juniorSecondary: NigeriaNaira.format(9000),
-    seniorSecondary: NigeriaNaira.format(11000),
+    nursery: 0,
+    primary: 0,
+    juniorSecondary: 0,
+    seniorSecondary: 0,
   });
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+
+  const getFees = async () =>{
+    try {
+      const fees = await axios.get(`${url}/getSchoolFees`)
+      setFees(fees.data)
+      setLoading(false)
+    } catch (error) {
+      alert('an error occoured')
+      console.log(error)
+    }
+  }
+
+  useEffect(() =>{
+    getFees()
+  }, [fees])
 
   const [isEditing, setIsEditing] = useState({
     nursery: false,
@@ -54,11 +74,20 @@ const Content = () => {
 
   const handleEditClick = (section) => {
     setIsEditing({ ...isEditing, [section]: true });
-
   };
 
-  const handleSaveClick = (section) => {
-    setIsEditing({ ...isEditing, [section]: false });
+  const handleSaveClick = async (section) => {
+    setSaving(true)
+    try {
+      const save = await axios.post(`${url}/setSchoolFees`, {
+        section: section,
+        amount: fees[section]
+      })
+      setSaving(false);
+      setIsEditing({ ...isEditing, [section]: false });
+    } catch (error) {
+      alert('an error occoured')
+    }
   };
 
   const handleInputChange = (event, section) => {
@@ -69,7 +98,7 @@ const Content = () => {
 
   return (
     <div className='w-full h-fit mt-20'>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{backgroundColor: white}}>
         <Table>
           <TableHead>
             <TableRow>
@@ -90,7 +119,11 @@ const Content = () => {
                       onChange={(e) => handleInputChange(e, section)}
                     />
                   ) : (
-                    `${fee}`
+                    loading ? (
+                      <Skeleton variant='text' width='20%' />
+                    ) : (
+                    `${NigeriaNaira.format(fee)}`
+                    )
                   )}
                 </TableCell>
                 <TableCell>
@@ -100,12 +133,13 @@ const Content = () => {
                       color="success"
                       onClick={() => handleSaveClick(section)}
                     >
-                      Save
+                      {saving ? 'Saving...' : 'Save'}
                     </Button>
                   ) : (
                     <Button
                       variant="outlined"
                       color="primary"
+                      disabled={loading}
                       onClick={() => handleEditClick(section)}
                     >
                       Edit

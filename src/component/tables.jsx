@@ -1,22 +1,37 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { useTable } from "react-table";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+} from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { darkBlue, white } from "../util/colors";
+import { NigeriaNaira } from "../util/helper";
 
-const Table = ({ cls, nodes, loading }) => {
+const Status = (props) =>{
+  return(
+    <div style={{backgroundColor: props.color}} className='w-20 h-8 p-1 flex justify-center items-center text-sm text-[100] text-white rounded-md shadow-sm'>
+      {props.text}
+    </div>
+  )
+}
+
+const DataTable = ({ cls, nodes, loading }) => {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    const isLoading = () => {
-      
-    };
+    const isLoading = () => {};
 
     isLoading();
-  }, []); 
+  }, []);
 
   const filteredData = useMemo(
     () =>
@@ -30,31 +45,6 @@ const Table = ({ cls, nodes, loading }) => {
     [filter, nodes]
   );
 
-  const data = useMemo(() => filteredData, [filteredData]);
-
-  const columns = useMemo(
-    () => [
-      { Header: "First Name", accessor: "firstName" },
-      { Header: "Last Name", accessor: "lastName" },
-      { Header: "Gender", accessor: "gender" },
-      { Header: "Payment Status", accessor: "status" },
-      { Header: "Paid", accessor: "paid" },
-      { Header: "Owing", accessor: "owing" },
-    ],
-    []
-  );
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
-  });
-
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -64,7 +54,7 @@ const Table = ({ cls, nodes, loading }) => {
 
   // Handle row click to select
   const handleRowClick = (row) => {
-    const newRowId = row.original.id;
+    const newRowId = row.id;
     if (selectedRowId === newRowId) {
       // Deselect if the same row is clicked again
       setSelectedRowId(null);
@@ -76,7 +66,7 @@ const Table = ({ cls, nodes, loading }) => {
 
   return (
     <>
-      <div className="w-full mb-2">
+      <div className="w-full mb-2 my-4">
         <h1 className="text-center xl:text-xl font-bold -mt-5">{cls}</h1>
         <div className="flex justify-center my-1">
           <FormControl component="fieldset">
@@ -107,64 +97,63 @@ const Table = ({ cls, nodes, loading }) => {
           </FormControl>
         </div>
       </div>
-      <table
-        {...getTableProps()}
-        style={{ backgroundColor: white, width: "100%", borderCollapse: "collapse" }}
-      >
-        <thead
-          className="text-white text-lg tracking-widest rounded-2xl"
-          style={{ backgroundColor: darkBlue, color: "#fff" }}
-        >
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{ padding: "10px", borderBottom: "1px solid black" }}
-                >
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {loading ? (
-            <tr>
-              <td colSpan={columns.length} style={{ textAlign: "center", padding: "20px" }}>
-                Loading...
-              </td>
-            </tr>
-          ) : (
-            rows.map((row) => {
-              prepareRow(row);
-              const isSelected = row.original.id === selectedRowId;
-              return (
-                <tr
-                  className="text-base tracking-wider hover:bg-slate-700"
-                  {...row.getRowProps()}
-                  style={{
-                    cursor: "pointer",
-                    backgroundColor: isSelected ? "grey" : "inherit",
-                  }}
-                  onClick={() => handleRowClick(row)}
-                >
-                  {row.cells.map((cell) => (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{ padding: "10px", borderBottom: "1px solid #415a77" }}
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })
-          )}
-        </tbody>
-      </table>
+      <TableContainer component={Paper}>
+        <Table style={{ minWidth: 650, backgroundColor: white }}>
+          <TableHead style={{ backgroundColor: darkBlue, color: "#fff" }}>
+            <TableRow>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>First Name</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>Last Name</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>Gender</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>Payment Status</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>Paid</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "1.1rem" }}>Owing</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={6} sx={{ textAlign: "center", padding: "20px", fontSize: "1.1rem" }}>
+                  Loading...
+                </TableCell>
+              </TableRow>
+            ) : (
+              filteredData.map((row) => {
+                const isSelected = row.id === selectedRowId;
+                return (
+                  <TableRow
+                    key={row.id}
+                    hover
+                    onClick={() => handleRowClick(row)}
+                    selected={isSelected}
+                    sx={{ cursor: "pointer", backgroundColor: isSelected ? "grey" : "inherit" }}
+                  >
+                    <TableCell sx={{ fontSize: "1.1rem" }}>{row.firstName}</TableCell>
+                    <TableCell sx={{ fontSize: "1.1rem" }}>{row.lastName}</TableCell>
+                    <TableCell sx={{ fontSize: "1.1rem" }}>{row.gender}</TableCell>
+                    <TableCell sx={{ fontSize: "1rem" }}>
+                      <div>
+                        {row.status === "paid" ? (
+                          <Status text='Paid' color='#16a34a' />
+                        ) : row.status === "owing" ? (
+                          <Status text='Owing' color='#fb923c' />
+                        ) : row.status === "not paid" ? (
+                          <Status text='Not paid' color='#e63946' />
+                        ) : (
+                          <div>Unknown status</div>
+                        )}
+                      </div>
+                    </TableCell>
+                    <TableCell sx={{ fontSize: "1rem" }}>{NigeriaNaira.format(row.paid)}</TableCell>
+                    <TableCell sx={{ fontSize: "1rem" }}>{NigeriaNaira.format(row.owing)}</TableCell>
+                  </TableRow>
+                );
+              })
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
 
-export default Table;
+export default DataTable;

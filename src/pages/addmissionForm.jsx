@@ -52,9 +52,7 @@ const AddmissionFormContent = () => {
       parentName : parentName,
       phoneNumber : phoneNumber,
       address : address,
-      status : 'paid',
       paid : paid,
-      owing : 0
       }
     )
     .then(res =>{

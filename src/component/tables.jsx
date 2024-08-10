@@ -76,9 +76,9 @@ const Table = ({ cls, nodes, loading }) => {
 
   return (
     <>
-      <div className="w-full mb-4">
-        <h1 className="text-center xl:text-xl font-bold">{cls}</h1>
-        <div className="flex justify-center my-2">
+      <div className="w-full mb-2">
+        <h1 className="text-center xl:text-xl font-bold -mt-5">{cls}</h1>
+        <div className="flex justify-center my-1">
           <FormControl component="fieldset">
             <RadioGroup
               row
@@ -107,7 +107,6 @@ const Table = ({ cls, nodes, loading }) => {
           </FormControl>
         </div>
       </div>
-
       <table
         {...getTableProps()}
         style={{ backgroundColor: white, width: "100%", borderCollapse: "collapse" }}

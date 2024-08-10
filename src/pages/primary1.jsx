@@ -31,7 +31,7 @@ const Primary1 = () => {
         <ResponsiveDrawer />
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
-            <div className='xl:m-5 m-2 w-full h-full p-5 rounded shadow'>
+            <div className='xl:m-5 m-2 w-full h-full p-3 rounded'>
                 <Table cls='PRIMARY 1' nodes={Students} loading={loading} />
             </div>
             <div className='fixed bottom-6 right-8'>

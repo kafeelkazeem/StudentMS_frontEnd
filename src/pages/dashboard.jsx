@@ -72,7 +72,7 @@ const Dash_board = () => {
   return (
     <Box sx={{ display: 'flex', backgroundColor: white }}>
       <ResponsiveDrawer />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, background: white }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 1, background: white }}>
         <Toolbar />
         <DashBoard />
       </Box>

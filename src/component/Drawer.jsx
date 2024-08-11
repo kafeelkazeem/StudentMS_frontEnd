@@ -6,13 +6,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -20,41 +18,47 @@ import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Settings, ExpandLess, ExpandMore, Logout } from '@mui/icons-material';
+import ClassIcon from '@mui/icons-material/Class';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import { darkBlue, darkerBlue, white } from '../util/colors';
+import { deepOrange } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
-const classes = [  
-  {
-    id: 1,
-    title: 'Primary 1',
-    path: '/primary1'
-  },
-  {
-    id: 2,
-    title: 'Primary 2',
-    path: '/primary2'
-  },
-  {
-    id: 3,
-    title: 'Primary 3',
-    path: '/primary3'
-  },
-  {
-    id: 4,
-    title: 'Primary 4',
-    path: '/primary4'
-  },
-  {
-    id: 5,
-    title: 'Primary 5',
-    path: '/primary5'
-  }
-]
+const nursery = [
+  { id: 1, title: 'Play Group', path: '/playgroup' },
+  { id: 2, title: 'Pre-Nursery', path: '/prenursery' },
+  { id: 3, title: 'Nursery 1', path: '/nursery1' },
+  { id: 4, title: 'Nursery 2', path: '/nursery2' }
+];
+
+const primary = [
+  { id: 1, title: 'Primary 1', path: '/primary1' },
+  { id: 2, title: 'Primary 2', path: '/primary2' },
+  { id: 3, title: 'Primary 3', path: '/primary3' },
+  { id: 4, title: 'Primary 4', path: '/primary4' },
+  { id: 5, title: 'Primary 5', path: '/primary5' }
+];
+
+const secondary = [
+  { id: 1, title: 'JSS1', path: '/jss1' },
+  { id: 2, title: 'JSS2', path: '/jss2' },
+  { id: 3, title: 'JSS3', path: '/jss3' },
+  { id: 4, title: 'SSS1', path: '/sss1' },
+  { id: 5, title: 'SSS2', path: '/sss2' },
+  { id: 6, title: 'SSS3', path: '/sss3' }
+];
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [nurseryOpen, setNurseryOpen] = React.useState(false);
+  const [primaryOpen, setPrimaryOpen] = React.useState(false);
+  const [secondaryOpen, setSecondaryOpen] = React.useState(false);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -71,43 +75,127 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const drawer = (
     <div>
-      <Toolbar />
+      <div className='w-full flex flex-row items-center justify-left py-4 px-3'>
+        <Avatar sx={{ marginRight: 2, bgcolor: deepOrange[500] }}>A</Avatar>
+        <Typography variant="h6" color="black">Admin</Typography>
+      </div>
       <Divider />
       <List>
-        {['Dash Board'].map((text, index) => (
-          <Link to='/' style={{textDecoration: 'none', color: 'black'}}><ListItem key={text} disablePadding>
+        <Link to='/dashboard' style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon sx={{ color: darkerBlue }} />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Dash Board" />
             </ListItemButton>
           </ListItem>
-          </Link>
-        ))}
+        </Link>
       </List>
       <Divider />
       <List>
-        {classes.map((i, index) => (
-          <Link to={i.path} style={{textDecoration: 'none', color: 'black'}}><ListItem key={index} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SchoolIcon />
-              </ListItemIcon>
-              <ListItemText primary={i.title} />
-            </ListItemButton>
-          </ListItem></Link>
-        ))}
+        {/* Nursery */}
+        <ListItemButton onClick={() => setNurseryOpen(!nurseryOpen)}>
+          <ListItemIcon>
+            <SchoolIcon sx={{ color: darkerBlue }} />
+          </ListItemIcon>
+          <ListItemText primary="Nursery" />
+          {nurseryOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={nurseryOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {nursery.map((item) => (
+              <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+        </Collapse>
+
+        {/* Primary */}
+        <ListItemButton onClick={() => setPrimaryOpen(!primaryOpen)}>
+          <ListItemIcon>
+            <SchoolIcon sx={{ color: darkerBlue }} />
+          </ListItemIcon>
+          <ListItemText primary="Primary" />
+          {primaryOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={primaryOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {primary.map((item) => (
+              <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+        </Collapse>
+
+        {/* Secondary */}
+        <ListItemButton onClick={() => setSecondaryOpen(!secondaryOpen)}>
+          <ListItemIcon>
+            <SchoolIcon sx={{ color: darkerBlue }} />
+          </ListItemIcon>
+          <ListItemText primary="Secondary" />
+          {secondaryOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={secondaryOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {secondary.map((item) => (
+              <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+        </Collapse>
+      </List>
+      <Divider />
+      <List>
+        <Link to='/addmissionForm' style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AutoStoriesIcon sx={{ color: darkerBlue }} />
+            </ListItemIcon>
+            <ListItemText primary="Addmission Form" />
+          </ListItemButton>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link to='/settings' style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <Settings sx={{ color: darkerBlue }} />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItemButton>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link to='/logout' style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <Logout sx={{ color: darkerBlue }} />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </Link>
       </List>
     </div>
   );
-
-  // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
       <>
@@ -117,7 +205,7 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: '#06547b',
+          backgroundColor: darkerBlue,
         }}
       >
         <Toolbar>
@@ -130,25 +218,23 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Student Management System
+          <Typography className='tracking-widest text-3xl' variant="h6" noWrap component="div">
+            School Management System
           </Typography>
         </Toolbar>
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, backgroundColor: darkBlue}}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -160,8 +246,9 @@ function ResponsiveDrawer(props) {
         <Drawer
           variant="permanent"
           sx={{
+            backgroundColor: white,
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: white },
           }}
           open
         >
@@ -173,10 +260,6 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
   window: PropTypes.func,
 };
 

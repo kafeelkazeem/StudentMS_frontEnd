@@ -19,6 +19,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Settings, ExpandLess, ExpandMore, Logout } from '@mui/icons-material';
+import ClassIcon from '@mui/icons-material/Class';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import { darkBlue, darkerBlue, white } from '../util/colors';
@@ -26,39 +28,37 @@ import { deepOrange } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
-const classes = [  
-  {
-    id: 1,
-    title: 'Primary 1',
-    path: '/primary1'
-  },
-  {
-    id: 2,
-    title: 'Primary 2',
-    path: '/primary2'
-  },
-  {
-    id: 3,
-    title: 'Primary 3',
-    path: '/primary3'
-  },
-  {
-    id: 4,
-    title: 'Primary 4',
-    path: '/primary4'
-  },
-  {
-    id: 5,
-    title: 'Primary 5',
-    path: '/primary5'
-  }
-]
+const nursery = [
+  { id: 1, title: 'Play Group', path: '/playgroup' },
+  { id: 2, title: 'Pre-Nursery', path: '/prenursery' },
+  { id: 3, title: 'Nursery 1', path: '/nursery1' },
+  { id: 4, title: 'Nursery 2', path: '/nursery2' }
+];
+
+const primary = [
+  { id: 1, title: 'Primary 1', path: '/primary1' },
+  { id: 2, title: 'Primary 2', path: '/primary2' },
+  { id: 3, title: 'Primary 3', path: '/primary3' },
+  { id: 4, title: 'Primary 4', path: '/primary4' },
+  { id: 5, title: 'Primary 5', path: '/primary5' }
+];
+
+const secondary = [
+  { id: 1, title: 'JSS1', path: '/jss1' },
+  { id: 2, title: 'JSS2', path: '/jss2' },
+  { id: 3, title: 'JSS3', path: '/jss3' },
+  { id: 4, title: 'SSS1', path: '/sss1' },
+  { id: 5, title: 'SSS2', path: '/sss2' },
+  { id: 6, title: 'SSS3', path: '/sss3' }
+];
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [nurseryOpen, setNurseryOpen] = React.useState(false);
+  const [primaryOpen, setPrimaryOpen] = React.useState(false);
+  const [secondaryOpen, setSecondaryOpen] = React.useState(false);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -75,11 +75,7 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const drawer = (
     <div>
@@ -95,31 +91,86 @@ function ResponsiveDrawer(props) {
               <ListItemIcon>
                 <DashboardIcon sx={{ color: darkerBlue }} />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText primary="Dash Board" />
             </ListItemButton>
           </ListItem>
         </Link>
       </List>
       <Divider />
       <List>
-        <ListItemButton onClick={handleClick}>
+        {/* Nursery */}
+        <ListItemButton onClick={() => setNurseryOpen(!nurseryOpen)}>
           <ListItemIcon>
             <SchoolIcon sx={{ color: darkerBlue }} />
           </ListItemIcon>
-          <ListItemText primary="Classes" />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText primary="Nursery" />
+          {nurseryOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={nurseryOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {classes.map((item) => (
+            {nursery.map((item) => (
               <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
                 <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
                   <ListItemText primary={item.title} />
                 </ListItemButton>
               </Link>
             ))}
           </List>
         </Collapse>
+
+        {/* Primary */}
+        <ListItemButton onClick={() => setPrimaryOpen(!primaryOpen)}>
+          <ListItemIcon>
+            <SchoolIcon sx={{ color: darkerBlue }} />
+          </ListItemIcon>
+          <ListItemText primary="Primary" />
+          {primaryOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={primaryOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {primary.map((item) => (
+              <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+        </Collapse>
+
+        {/* Secondary */}
+        <ListItemButton onClick={() => setSecondaryOpen(!secondaryOpen)}>
+          <ListItemIcon>
+            <SchoolIcon sx={{ color: darkerBlue }} />
+          </ListItemIcon>
+          <ListItemText primary="Secondary" />
+          {secondaryOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={secondaryOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {secondary.map((item) => (
+              <Link to={item.path} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon><ClassIcon sx={{ color: darkerBlue }}/></ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+        </Collapse>
+      </List>
+      <Divider />
+      <List>
+        <Link to='/addmissionForm' style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AutoStoriesIcon sx={{ color: darkerBlue }} />
+            </ListItemIcon>
+            <ListItemText primary="Addmission Form" />
+          </ListItemButton>
+        </Link>
       </List>
       <Divider />
       <List>

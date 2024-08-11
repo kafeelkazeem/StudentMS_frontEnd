@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Toolbar } from '@mui/material'
-import ResponsiveDrawer from '../component/Drawer'
-import Table from '../component/tables'
-import AddButton from '../component/buttons/AddButton'
+import ResponsiveDrawer from '../../../component/Drawer'
+import Table from '../../../component/tables'
+import AddButton from '../../../component/buttons/AddButton'
 import axios from 'axios'
-import { url } from '../util/url'
-import { white } from '../util/colors'
+import { url } from '../../../util/url'
+import { white } from '../../../util/colors'
 
 
 const Primary5 = () => {

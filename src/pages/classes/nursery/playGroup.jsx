@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Toolbar } from '@mui/material'
-import ResponsiveDrawer from '../component/Drawer'
-import Table from '../component/tables'
-import AddButton from '../component/buttons/AddButton'
+import ResponsiveDrawer from '../../../component/Drawer'
+import Table from '../../../component/tables'
+import AddButton from '../../../component/buttons/AddButton'
 import axios from 'axios'
-import { url } from '../util/url'
-import { white } from '../util/colors'
+import { url } from '../../../util/url'
+import { white } from '../../../util/colors'
 
 
-const Primary3 = () => {
+const PlayGroup = () => {
 
   const [Students, setStudents] = useState([])
   const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const Primary3 = () => {
   useEffect(() =>{
     axios.get(`${url}/getAllStudentPerClass`, {
       params : {
-        cls: 'primary 3'
+        cls: 'playGroup'
       }
     })
     .then(res =>{
@@ -25,13 +25,14 @@ const Primary3 = () => {
     })
     .catch(err => console.log(err))
   }, [])
+  console.log(Students)
   return (
     <Box sx={{ display: 'flex', backgroundColor: white }}>
         <ResponsiveDrawer />
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
-            <div className='xl:m-5 m-2 w-full h-full p-3'>
-                <Table cls='PRIMARY 3' nodes={Students} loading={loading} />
+            <div className='xl:m-5 m-2 w-full h-full p-3 rounded'>
+                <Table cls='PLAY GROUP' nodes={Students} loading={loading} />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />
@@ -41,4 +42,4 @@ const Primary3 = () => {
   )
 }
 
-export default Primary3
+export default PlayGroup

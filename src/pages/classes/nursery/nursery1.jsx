@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Toolbar } from '@mui/material'
-import ResponsiveDrawer from '../component/Drawer'
-import Table from '../component/tables'
-import AddButton from '../component/buttons/AddButton'
+import ResponsiveDrawer from '../../../component/Drawer'
+import Table from '../../../component/tables'
+import AddButton from '../../../component/buttons/AddButton'
 import axios from 'axios'
-import { url } from '../util/url'
-import { white } from '../util/colors'
+import { url } from '../../../util/url'
+import { white } from '../../../util/colors'
 
 
-const Primary1 = () => {
+const Nursery1 = () => {
 
   const [Students, setStudents] = useState([])
   const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const Primary1 = () => {
   useEffect(() =>{
     axios.get(`${url}/getAllStudentPerClass`, {
       params : {
-        cls: 'primary 1'
+        cls: 'nursery 1'
       }
     })
     .then(res =>{
@@ -32,7 +32,7 @@ const Primary1 = () => {
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
             <div className='xl:m-5 m-2 w-full h-full p-3 rounded'>
-                <Table cls='PRIMARY 1' nodes={Students} loading={loading} />
+                <Table cls='Nursery 1' nodes={Students} loading={loading} />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />
@@ -42,4 +42,4 @@ const Primary1 = () => {
   )
 }
 
-export default Primary1
+export default Nursery1

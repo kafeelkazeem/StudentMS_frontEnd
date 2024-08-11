@@ -16,6 +16,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import MakePayment from '../component/form/makePayment';
 import { white } from '../util/colors';
+import PaymentHistory from '../component/paymentHistory';
 
 const Back = () => {
   const navigate = useNavigate();
@@ -37,17 +38,24 @@ const Back = () => {
 };
 
 const ProfileContent = () => {
+  const [openPaymentModal, setOpenAddPaymentModal] = React.useState(false);
+  const [openPaymentHistoryModal, setOpenPaymentHistoryModal] = React.useState(false); // State for PaymentHistory modal
 
-  const [openPaymentModal, setOpenAddPaymentModal] = React.useState(false)
+  const handleCloseAddPaymentModal = () => {
+    setOpenAddPaymentModal(false);
+  };
 
+  const handleOpenPaymentModal = () => {
+    setOpenAddPaymentModal(true);
+  };
 
-  const handleCloseAddPaymentModal = () =>{
-    setOpenAddPaymentModal(false)
-  }
+  const handleOpenPaymentHistoryModal = () => {
+    setOpenPaymentHistoryModal(true);
+  };
 
-  const handleOpenPaymentModal = () =>{
-    setOpenAddPaymentModal(true)
-  }
+  const handleClosePaymentHistoryModal = () => {
+    setOpenPaymentHistoryModal(false);
+  };
 
   const { id } = useParams();
   const [firstName, setFirstName] = useState('');
@@ -99,7 +107,7 @@ const ProfileContent = () => {
   return (
     <>
       <div>
-        <div style={{backgroundColor: white}} className="w-full h-60 flex items-center shadow">
+        <div style={{ backgroundColor: white }} className="w-full h-60 flex items-center shadow">
           <div className="w-full h-full flex items-center p-4">
             <div>
               <img
@@ -166,7 +174,7 @@ const ProfileContent = () => {
                   MAKE PAYMENT
                 </p>
               </div>
-              <div className="basis-1/4 bg-gray-700 h-full rounded shadow cursor-pointer">
+              <div onClick={handleOpenPaymentHistoryModal} className="basis-1/4 bg-gray-700 h-full rounded shadow cursor-pointer">
                 <div className="text-white text-5xl flex justify-end m-2">
                   <HistoryIcon fontSize="inherit" />
                 </div>
@@ -209,6 +217,7 @@ const ProfileContent = () => {
         </div>
       </div>
       <MakePayment open={openPaymentModal} onClose={handleCloseAddPaymentModal} studentId={id} />
+      <PaymentHistory open={openPaymentHistoryModal} onClose={handleClosePaymentHistoryModal} id={id} />
     </>
   );
 };

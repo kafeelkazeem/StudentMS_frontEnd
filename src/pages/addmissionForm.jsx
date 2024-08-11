@@ -10,25 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { url } from '../util/url';
 
-// const Back = () => {
-//     const navigate = useNavigate();
-//     const { cls } = useParams();
-//     const goBack = () => {
-//       navigate(`/${cls}`);
-//     };
-//     return (
-//       <Button
-//         component="label"
-//         variant="contained"
-//         sx={{ position: 'fixed', zIndex: 2 }}
-//         startIcon={<ArrowBackIcon />}
-//         onClick={goBack}
-//       >
-//         Back
-//       </Button>
-//     );
-//   };
-
 const AddmissionFormContent = () => {
   const [firstName, setFirstName] = useState(null)
   const [lastName, setLastName] = useState(null)
@@ -112,7 +93,7 @@ const AddmissionFormContent = () => {
                   >
                     <MenuItem value="nursery">Nursery</MenuItem>
                     <MenuItem value="primary">Primary</MenuItem>
-                    <MenuItem value="seconday">Secondary</MenuItem>
+                    <MenuItem value="secondary">Secondary</MenuItem>
                   </Select>
                 </FormControl>
                 <FormControl className='basis-[45%]'>
@@ -125,24 +106,36 @@ const AddmissionFormContent = () => {
                     value={cls} 
                     onChange={(e) => setClass(e.target.value)}
                   >
-                    <MenuItem value="playgroup">Play Group</MenuItem>
-                    <MenuItem value="pre-nursery">Pre-Nursery</MenuItem>
-                    <MenuItem value="nursery 1">Nursery 1</MenuItem>
-                    <MenuItem value="nursery 2">Nursery 2</MenuItem>
-                    <Divider />
-                    <MenuItem value="primary 1">Primary 1</MenuItem>
-                    <MenuItem value="primary 2">Primary 2</MenuItem>
-                    <MenuItem value="primary 3">Primary 3</MenuItem>
-                    <MenuItem value="primary 4">Primary 4</MenuItem>
-                    <MenuItem value="primary 5">Primary 5</MenuItem>
-                    <Divider />
-                    <MenuItem value="jss 1">JSS 1</MenuItem>
-                    <MenuItem value="jss 2">JSS 2</MenuItem>
-                    <MenuItem value="jss 3">JSS 3</MenuItem>
-                    <Divider />
-                    <MenuItem value="sss 1">SSS 1</MenuItem>
-                    <MenuItem value="sss 2">SSS 2</MenuItem>
-                    <MenuItem value="sss 3">SSS 3</MenuItem>
+                    <div>
+                        {section === "nursery" ? (
+                          <>
+                          <MenuItem value="playgroup">Play Group</MenuItem>
+                          <MenuItem value="pre-nursery">Pre-Nursery</MenuItem>
+                          <MenuItem value="nursery 1">Nursery 1</MenuItem>
+                          <MenuItem value="nursery 2">Nursery 2</MenuItem>
+                          </>
+                        ) : section === "primary" ? (
+                          <>
+                          <MenuItem value="primary 1">Primary 1</MenuItem>
+                          <MenuItem value="primary 2">Primary 2</MenuItem>
+                          <MenuItem value="primary 3">Primary 3</MenuItem>
+                          <MenuItem value="primary 4">Primary 4</MenuItem>
+                          <MenuItem value="primary 5">Primary 5</MenuItem>
+                          </>
+                        ) : section === "secondary" ? (
+                          <>
+                           <MenuItem value="jss 1">JSS 1</MenuItem>
+                          <MenuItem value="jss 2">JSS 2</MenuItem>
+                         <MenuItem value="jss 3">JSS 3</MenuItem>
+                          <Divider />
+                         <MenuItem value="sss 1">SSS 1</MenuItem>
+                         <MenuItem value="sss 2">SSS 2</MenuItem>
+                         <MenuItem value="sss 3">SSS 3</MenuItem>
+                          </>
+                        ) : (
+                          <div>Select section</div>
+                        )}
+                      </div>
                   </Select>
                 </FormControl>
             </div>

@@ -7,9 +7,8 @@ import axios from 'axios'
 import { url } from '../../../util/url'
 import { white } from '../../../util/colors'
 
-
 const Primary1 = () => {
-
+  
   const [Students, setStudents] = useState([])
   const [loading, setLoading] = useState(true)
 

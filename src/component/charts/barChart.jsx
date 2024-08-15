@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { blue } from '@mui/material/colors';
 
 export default function Chart({data}) {
   console.log(data) 

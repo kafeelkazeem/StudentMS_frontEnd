@@ -18,8 +18,14 @@ const DashBoard = () => {
   const [primaryBarChart, setPrimaryBarChart] = useState([40, 70, 60, 70, 60]);
   const [loading, setLoading] = useState(true);
 
+  const token = localStorage.getItem('token')
+
   useEffect(() => {
-    axios.get(`${url}/getDashBoard`)
+    axios.get(`${url}/getDashBoard`, {
+      headers : {
+        'Authorization': `${token}`,
+      },
+    })
       .then(res => {
         setTotalStudent(res.data.totalStudent);
         setTotalStudentPaid(res.data.totalStudentPaid);
@@ -29,6 +35,7 @@ const DashBoard = () => {
         setLoading(false);
       })
       .catch(err => {
+        alert(err)
         console.log(err);
       });
   }, [totalStudent, totalStudentPaid, totalStudentOwing, totalStudentNotPaid, primaryBarChart, loading]);

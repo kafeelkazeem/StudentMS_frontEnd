@@ -4,7 +4,7 @@ import ResponsiveDrawer from './Drawer'
 import { url } from '../util/url'
 import DataTable from './tables'
 import axios from 'axios'
-import { white } from '../util/colors'
+import { darkerBlue, white } from '../util/colors'
 import AddButton from './buttons/AddButton'
 
 const Class = ({params, clsName}) => {
@@ -34,8 +34,11 @@ const Class = ({params, clsName}) => {
         <ResponsiveDrawer />
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
-            <div className='xl:m-5 m-2 w-full h-full p-3 rounded'>
-                <DataTable cls={clsName} nodes={Students} loading={loading} />
+            <div>
+                <h1 style={{color: darkerBlue}} className='text-3xl font-bold text-left tracking-wide'>{clsName}</h1>
+            </div>
+            <div className='xl:m-1 m-2 w-full h-full p-3 rounded'>
+                <DataTable nodes={Students} loading={loading} />
             </div>
             <div className='fixed bottom-6 right-8'>
               <AddButton />

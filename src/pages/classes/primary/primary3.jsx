@@ -3,7 +3,7 @@ import Class from '../../../component/class'
 
 const Primary3 = () => {
   return(
-    <Class params='primary 3' clsName='PRIMARY 3' />
+    <Class params='primary 3' clsName='Primary 3' />
   )
 }
 

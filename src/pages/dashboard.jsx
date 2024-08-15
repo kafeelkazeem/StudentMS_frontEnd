@@ -8,7 +8,7 @@ import axios from 'axios';
 import { url } from '../util/url';
 import '../assets/css/loading.css'
 import Loading from '../component/loading/circleProgress';
-import { darkBlue, darkerBlue, lightBlue, white } from '../util/colors';
+import { darkBlue, darkerBlue, white } from '../util/colors';
 
 const DashBoard = () => {
   const [totalStudent, setTotalStudent] = useState(300);

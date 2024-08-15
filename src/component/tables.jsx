@@ -66,9 +66,8 @@ const DataTable = ({ cls, nodes, loading }) => {
 
   return (
     <>
-      <div className="w-full mb-2 my-4">
-        <h1 className="text-center xl:text-xl font-bold -mt-5">{cls}</h1>
-        <div className="flex justify-center my-1">
+      <div className="w-full mb-2 -mt-14">
+        <div className="flex justify-end my-0">
           <FormControl component="fieldset">
             <RadioGroup
               row
@@ -77,21 +76,21 @@ const DataTable = ({ cls, nodes, loading }) => {
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             >
-              <FormControlLabel value="all" control={<Radio />} label="View all" />
+              <FormControlLabel value="all" control={<Radio />} label={<p className="text-base tracking-wider">All</p>} />
               <FormControlLabel
                 value="Paid"
                 control={<Radio sx={{ "&.Mui-checked": { color: "#00897b" } }} />}
-                label="Paid"
+                label={<p className="text-base tracking-wider">Paid</p>}
               />
               <FormControlLabel
                 value="Owing"
                 control={<Radio sx={{ "&.Mui-checked": { color: "#ffa726" } }} />}
-                label="Owing"
+                label={<p className="text-base tracking-wider">Owing</p>}
               />
               <FormControlLabel
                 value="Not Paid"
                 control={<Radio sx={{ "&.Mui-checked": { color: "#e64a19" } }} />}
-                label="Not Paid"
+                label={<p className="text-base tracking-wider">Not Paid</p>}
               />
             </RadioGroup>
           </FormControl>

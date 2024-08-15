@@ -19,8 +19,8 @@ import { useNavigate } from 'react-router-dom';
 import { white } from '../util/colors';
 import { NigeriaNaira } from '../util/helper';
 import EditIcon from '@mui/icons-material/Edit';
-import axios from 'axios'
-import { url } from '../util/url'
+import axios from 'axios';
+import { url } from '../util/url';
 
 const Back = () => {
   const navigate = useNavigate();
@@ -47,23 +47,29 @@ const Content = () => {
     juniorSecondary: 0,
     seniorSecondary: 0,
   });
-  const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
-  const getFees = async () =>{
+  const token = localStorage.getItem('token');
+
+  const getFees = async () => {
     try {
-      const fees = await axios.get(`${url}/getSchoolFees`)
-      setFees(fees.data)
-      setLoading(false)
+      const feesResponse = await axios.get(`${url}/getSchoolFees`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      setFees(feesResponse.data);
+      setLoading(false);
     } catch (error) {
-      alert('an error occoured')
-      console.log(error)
+      alert('An error occurred');
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(() =>{
-    getFees()
-  }, [fees])
+  useEffect(() => {
+    getFees();
+  }, []);
 
   const [isEditing, setIsEditing] = useState({
     nursery: false,
@@ -77,16 +83,26 @@ const Content = () => {
   };
 
   const handleSaveClick = async (section) => {
-    setSaving(true)
+    setSaving(true);
     try {
-      const save = await axios.post(`${url}/setSchoolFees`, {
-        section: section,
-        amount: fees[section]
-      })
+      await axios.post(
+        `${url}/setSchoolFees`,
+        {
+          section: section,
+          amount: fees[section],
+        },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
       setSaving(false);
       setIsEditing({ ...isEditing, [section]: false });
     } catch (error) {
-      alert('an error occoured')
+      console.log(error);
+      alert('An error occurred');
+      setSaving(false); // Reset saving state if there's an error
     }
   };
 
@@ -97,33 +113,33 @@ const Content = () => {
   };
 
   return (
-    <div className='w-full h-fit mt-20'>
-      <TableContainer component={Paper} sx={{backgroundColor: white}}>
+    <div className="w-full h-fit mt-20">
+      <TableContainer component={Paper} sx={{ backgroundColor: white }}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{fontSize: '24px'}}>Section</TableCell>
-              <TableCell sx={{fontSize: '24px'}}>School Fees</TableCell>
-              <TableCell sx={{fontSize: '24px'}}>Action</TableCell>
+              <TableCell sx={{ fontSize: '24px' }}>Section</TableCell>
+              <TableCell sx={{ fontSize: '24px' }}>School Fees</TableCell>
+              <TableCell sx={{ fontSize: '24px' }}>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {Object.entries(fees).map(([section, fee]) => (
               <TableRow key={section}>
-                <TableCell sx={{fontSize: '16px'}}>{section.charAt(0).toUpperCase() + section.slice(1)}</TableCell>
-                <TableCell sx={{fontSize: '16px'}}>
+                <TableCell sx={{ fontSize: '16px' }}>
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </TableCell>
+                <TableCell sx={{ fontSize: '16px' }}>
                   {isEditing[section] ? (
                     <TextField
                       type="number"
                       value={fee}
                       onChange={(e) => handleInputChange(e, section)}
                     />
+                  ) : loading ? (
+                    <Skeleton variant="text" width="20%" />
                   ) : (
-                    loading ? (
-                      <Skeleton variant='text' width='20%' />
-                    ) : (
                     `${NigeriaNaira.format(fee)}`
-                    )
                   )}
                 </TableCell>
                 <TableCell>
@@ -143,7 +159,7 @@ const Content = () => {
                       onClick={() => handleEditClick(section)}
                     >
                       Edit
-                      <EditIcon fontSize='12' />
+                      <EditIcon fontSize="12" />
                     </Button>
                   )}
                 </TableCell>

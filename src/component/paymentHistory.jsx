@@ -7,11 +7,16 @@ import moment from 'moment';
 
 const PaymentHistory = ({ open, onClose, id }) => {
   const [payments, setPayments] = useState([]);
-
+  const token = localStorage.getItem('token')
   useEffect(() => {
     if (id) {
       axios
-        .get(`${url}/getPaymentHistory`, { params: { id } })
+        .get(`${url}/getPaymentHistory`, { 
+          params: { id },
+          headers : {
+            'Authorization': `${token}`,
+          }, 
+        })
         .then(res => setPayments(res.data))
         .catch(err => console.log(err));
     }

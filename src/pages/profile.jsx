@@ -70,11 +70,16 @@ const ProfileContent = () => {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const token = localStorage.getItem('token')
+
   useEffect(() => {
     axios
       .get(`${url}/getSingleStudent`, {
         params: {
           id: id,
+        },
+        headers : {
+          'Authorization': `${token}`,
         },
       })
       .then((res) => {

@@ -13,6 +13,8 @@ const MakePayment = ({ open, onClose, studentId }) => {
     const [phoneNumber, setPhoneNumber] = useState(null)
     const [date, setDate] = useState(null)
     const [amountPaid, setAmountPaid] = useState(null)
+
+    const token = localStorage.getItem('token')
     
     const handleSubmit = () =>{
         axios.post(`${url}/makePayment`, {
@@ -21,7 +23,13 @@ const MakePayment = ({ open, onClose, studentId }) => {
             date: date,
             amountPaid: amountPaid,
             paidTo: studentId,
-        })
+        },
+        {
+          headers : {
+          'Authorization': `${token}`,
+        },
+        }
+      )
         .then(res =>{
             onClose()
             alert('Paid')

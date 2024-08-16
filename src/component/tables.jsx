@@ -1,17 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-} from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Radio, RadioGroup, FormControlLabel, FormControl} from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { darkBlue, white } from "../util/colors";
 import { NigeriaNaira } from "../util/helper";
@@ -24,7 +12,7 @@ const Status = (props) =>{
   )
 }
 
-const DataTable = ({ cls, nodes, loading }) => {
+const DataTable = ({ nodes, loading }) => {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {

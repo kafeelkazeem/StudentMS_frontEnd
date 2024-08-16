@@ -3,7 +3,7 @@ import Class from '../../../component/class'
 
 const Jss3 = () => {
   return(
-    <Class params='jss 3' clsName='JSS 3' />
+    <Class params='jss 3' clsName='Jss 3' />
   )
 }
 

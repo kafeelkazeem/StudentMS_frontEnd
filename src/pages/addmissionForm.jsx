@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { Box, Divider, Toolbar} from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
-import { darkBlue, darkerBlue, white } from '../util/colors';
+import { darkBlue, white } from '../util/colors';
 import Avater from '../assets/images/avater.png';
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button, Checkbox, FormControlLabel } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from 'react-router-dom';
+import { TextField, FormControl, InputLabel, Select, MenuItem, Button} from '@mui/material';
 import axios from 'axios';
 import { url } from '../util/url';
 

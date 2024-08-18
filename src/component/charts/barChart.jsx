@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 
-export default function Chart({data}) {
+export default function Chart({data, classes}) {
   console.log(data) 
   return (
     <BarChart
@@ -11,7 +11,7 @@ export default function Chart({data}) {
       thresholds: [1],
       colors: ['#1976d2', 'red', 'blue'],
     },  
-    categoryGapRatio: 0.5, barGapRatio: 0,  data: ['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5'] }]}
+    categoryGapRatio: 0.5, barGapRatio: 0,  data: classes }]}
     series={[{ data: data}]}
       height={400}
     />

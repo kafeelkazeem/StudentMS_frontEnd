@@ -19,10 +19,7 @@ const AdmissionFormContent = () => {
   const [address, setAddress] = useState("");
   const [paid, setPaid] = useState("");
 
-  const handleSectionChange = (e) => {
-    setSection(e.target.value);
-    // setClass(""); // Clear class selection when section changes
-  };
+  const token = localStorage.getItem('token')
 
   const handleSubmit = () => {
     axios
@@ -37,6 +34,10 @@ const AdmissionFormContent = () => {
         phoneNumber,
         address,
         paid,
+      }, {
+        headers: {
+          Authorization: `${token}`,
+        },
       })
       .then((res) => {
         if (res.data.message) {
@@ -44,6 +45,7 @@ const AdmissionFormContent = () => {
         }
       })
       .catch((err) => {
+        console.log(err)
         alert(`Error: ${err.response?.data?.message || err.message}`);
       });
   };
@@ -118,7 +120,8 @@ const AdmissionFormContent = () => {
               >
                 <MenuItem value="nursery">Nursery</MenuItem>
                 <MenuItem value="primary">Primary</MenuItem>
-                <MenuItem value="secondary">Secondary</MenuItem>
+                <MenuItem value="juniorSecondary">Junior Secondary</MenuItem>
+                <MenuItem value="seniorSecondary">Senior Secondary</MenuItem>
               </Select>
             </FormControl>
             <FormControl className="basis-[45%]">
@@ -131,25 +134,17 @@ const AdmissionFormContent = () => {
                 value={cls}
                 onChange={(e) => setClass(e.target.value)}
               >
-                {section === "nursery" && (
-                  <>
-                    <MenuItem value="playgroup">Play Group</MenuItem>
+                    <MenuItem value="playGroup">Play Group</MenuItem>
                     <MenuItem value="pre-nursery">Pre-Nursery</MenuItem>
                     <MenuItem value="nursery 1">Nursery 1</MenuItem>
                     <MenuItem value="nursery 2">Nursery 2</MenuItem>
-                  </>
-                )}
-                {section === "primary" && (
-                  <>
+                    <Divider/>
                     <MenuItem value="primary 1">Primary 1</MenuItem>
                     <MenuItem value="primary 2">Primary 2</MenuItem>
                     <MenuItem value="primary 3">Primary 3</MenuItem>
                     <MenuItem value="primary 4">Primary 4</MenuItem>
                     <MenuItem value="primary 5">Primary 5</MenuItem>
-                  </>
-                )}
-                {section === "secondary" && (
-                  <>
+                    <Divider />
                     <MenuItem value="jss 1">JSS 1</MenuItem>
                     <MenuItem value="jss 2">JSS 2</MenuItem>
                     <MenuItem value="jss 3">JSS 3</MenuItem>
@@ -157,8 +152,6 @@ const AdmissionFormContent = () => {
                     <MenuItem value="sss 1">SSS 1</MenuItem>
                     <MenuItem value="sss 2">SSS 2</MenuItem>
                     <MenuItem value="sss 3">SSS 3</MenuItem>
-                  </>
-                )}
               </Select>
             </FormControl>
           </div>

@@ -15,9 +15,15 @@ const DashBoard = () => {
   const [totalStudentPaid, setTotalStudentPaid] = useState(100);
   const [totalStudentOwing, setTotalStudentOwing] = useState(130);
   const [totalStudentNotPaid, setTotalStudentNotPaid] = useState(70);
-  const [primaryBarChart, setPrimaryBarChart] = useState([40, 70, 60, 70, 60]);
+  const [nurseryBarChartData, setNurseryBarChartData] = useState([])
+  const [primaryBarChartData, setPrimaryBarChartData] = useState([40, 70, 60, 70, 60]);
+  const [secondaryBarChartData, setSecondaryBarChartData] = useState([])
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('primary')
+
+  const nurseryClasses = ['Play-Group', 'Pre-Nursery', 'Nursery 1', 'Nursery 2'] 
+  const primaryClasses = ['Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5']
+  const secondaryClasses = ['jss1', 'jss2', 'jss3', 'sss1', 'sss2', 'sss3']
 
   const token = localStorage.getItem('token')
 
@@ -32,7 +38,9 @@ const DashBoard = () => {
         setTotalStudentPaid(res.data.totalStudentPaid);
         setTotalStudentOwing(res.data.totalStudentOwing);
         setTotalStudentNotPaid(res.data.totalStudentNotPaid);
-        setPrimaryBarChart(res.data.primaryBarChartData);
+        setNurseryBarChartData(res.data.nurseryBarChartData);
+        setPrimaryBarChartData(res.data.primaryBarChartData);
+        setSecondaryBarChartData(res.data.secondaryBarChartData);
         setLoading(false);
       })
       .catch(err => {
@@ -80,7 +88,9 @@ const DashBoard = () => {
             </div>
           </div>
           <div className='-mt-10'>
-            <Chart data={primaryBarChart} />
+            {filter === 'nursery' && <Chart data={nurseryBarChartData} classes={nurseryClasses} />}
+            {filter === 'primary' && <Chart data={primaryBarChartData} classes={primaryClasses} />}
+            {filter === 'secondary' && <Chart data={secondaryBarChartData} classes={secondaryClasses} />}
           </div>
         </div>
         <div style={{backgroundColor: white}} className='flex basis-1/6 justify-right items-center rounded border'>

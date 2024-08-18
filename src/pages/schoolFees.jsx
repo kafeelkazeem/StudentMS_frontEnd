@@ -14,31 +14,12 @@ import {
   Skeleton,
 } from '@mui/material';
 import ResponsiveDrawer from '../component/Drawer';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from 'react-router-dom';
 import { white } from '../util/colors';
 import { NigeriaNaira } from '../util/helper';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import { url } from '../util/url';
-
-const Back = () => {
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(`/settings`);
-  };
-  return (
-    <Button
-      component="label"
-      variant="contained"
-      sx={{ position: 'fixed', zIndex: 2 }}
-      startIcon={<ArrowBackIcon />}
-      onClick={goBack}
-    >
-      Back
-    </Button>
-  );
-};
+import Back from '../component/buttons/BackButton';
 
 const Content = () => {
   const [fees, setFees] = useState({
@@ -178,7 +159,7 @@ const SchoolFees = () => {
       <ResponsiveDrawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: '100%' }}>
         <Toolbar />
-        <Back />
+        <Back route={'/settings'} />
         <Content />
       </Box>
     </Box>

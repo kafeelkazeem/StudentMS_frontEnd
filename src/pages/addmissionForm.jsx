@@ -135,7 +135,7 @@ const AdmissionFormContent = () => {
                 onChange={(e) => setClass(e.target.value)}
               >
                     <MenuItem value="playGroup">Play Group</MenuItem>
-                    <MenuItem value="pre-nursery">Pre-Nursery</MenuItem>
+                    <MenuItem value="preNursery">Pre-Nursery</MenuItem>
                     <MenuItem value="nursery 1">Nursery 1</MenuItem>
                     <MenuItem value="nursery 2">Nursery 2</MenuItem>
                     <Divider/>

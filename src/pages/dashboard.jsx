@@ -52,7 +52,7 @@ const DashBoard = () => {
 
   const onSearch = async () =>{
     try {
-      const students = axios.post(`${url}/searchStudent`)
+      //const students = axios.post(`${url}/searchStudent`)
     } catch (error) {
       alert(error)
       console.log(error)

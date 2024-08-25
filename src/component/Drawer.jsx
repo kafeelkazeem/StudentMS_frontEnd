@@ -185,7 +185,7 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        <Link to='/logout' style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
           <ListItemButton>
             <ListItemIcon>
               <Logout sx={{ color: darkerBlue }} />

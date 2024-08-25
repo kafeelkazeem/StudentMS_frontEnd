@@ -18,13 +18,15 @@ import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Settings, ExpandLess, ExpandMore, Logout } from '@mui/icons-material';
+import { Settings, ExpandLess, ExpandMore, Logout, Search } from '@mui/icons-material';
 import ClassIcon from '@mui/icons-material/Class';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import { darkBlue, darkerBlue, white } from '../util/colors';
 import { deepOrange } from '@mui/material/colors';
+import {ReactComponent as Logo} from '../assets/svg/default.svg'
+import SearchForm from './search';
 
 const drawerWidth = 240;
 
@@ -218,9 +220,14 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className='tracking-widest text-3xl' variant="h6" noWrap component="div">
-            School Management System
-          </Typography>
+          <div className='w-full flex flex-row justify-between'>
+            <Typography className='tracking-widest text-3xl' variant="h6" noWrap component="div">
+              School Management System
+            </Typography>
+            <div className='flex justify-center items-center md:mr-5 cursor-pointer'>
+              <Search fontSize='large' />
+            </div>
+          </div>
         </Toolbar>
       </AppBar>
       <Box

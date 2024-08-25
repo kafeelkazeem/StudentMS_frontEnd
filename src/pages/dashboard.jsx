@@ -50,12 +50,21 @@ const DashBoard = () => {
       });
   }, []);
 
+  const onSearch = async () =>{
+    try {
+      const students = axios.post(`${url}/searchStudent`)
+    } catch (error) {
+      alert(error)
+      console.log(error)
+    }
+  }
+
   return (
     <div style={{backgroundColor: white}} className={`w-full h-full p-2 ${loading ? 'blur-background' : ''}`}>
       {loading && <Loading />}
       <div className='flex flex-row w-full justify-between'>
         <h1 style={{color: darkerBlue}} className='text-3xl font-bold text-left tracking-wide'>Dash Board</h1>
-        <SearchForm />
+        <SearchForm onClick={onSearch} />
       </div>
       <div style={{backgroundColor: white}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full mt-3">
           <div className="bg-blue-500 p-4 md:max-w-screen-sm rounded shadow">

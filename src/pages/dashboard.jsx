@@ -52,7 +52,15 @@ const DashBoard = () => {
 
   const onSearch = async () =>{
     try {
-      //const students = axios.post(`${url}/searchStudent`)
+      const students = await axios.get(`${url}/searchStudent`, {
+        headers : {
+          'Authorization': `${token}`,
+        },
+        params : {
+          studentName: 'fake filler'
+        }
+      })
+      console.log(students)
     } catch (error) {
       alert(error)
       console.log(error)

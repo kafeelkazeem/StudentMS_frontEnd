@@ -24,6 +24,7 @@ import Sss1 from './pages/classes/secondary/sss1';
 import Sss2 from './pages/classes/secondary/sss2';
 import Sss3 from './pages/classes/secondary/sss3';
 import Password from './pages/password';
+import SearchedStudent from './pages/searchedStudent';
 
 function App() {
     useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
             <Route path='/settings' element={<PrivateRoute> <Settings /> </PrivateRoute>} />
             <Route path='/settings/schoolFees' element={<PrivateRoute> <SchoolFees /></PrivateRoute>} />
             <Route path='/settings/changePassword' element={<PrivateRoute> <Password /></PrivateRoute>} />
+            <Route path='/searchResult' element={<PrivateRoute><SearchedStudent /></PrivateRoute>} />
           </Routes>
         </BrowserRouter>
       </>

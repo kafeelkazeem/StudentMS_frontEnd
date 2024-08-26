@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { darkBlue } from '../util/colors'
 import axios from 'axios'
 import { url } from '../util/url'
+import { useNavigate } from 'react-router-dom'
 
 const SearchForm = () => {
+  const navigate = useNavigate()
   const token = localStorage.getItem('token')
   const [studentName, setStudentName] = useState('')
+  const [loading, setLoading] = useState(false)
   const onSearch = async () =>{
+    setLoading(true)
     try {
       const students = await axios.get(`${url}/searchStudent`, {
         headers : {
@@ -16,6 +19,9 @@ const SearchForm = () => {
           studentName: studentName
         }
       })
+      setLoading(false)
+      localStorage.setItem('searchResult', JSON.stringify(students.data))
+      navigate('/searchResult')
     } catch (error) {
       alert(error)
       console.log(error)
@@ -30,7 +36,7 @@ const SearchForm = () => {
           </svg>
         </div>
         <input type="text" className="w-full max-w-[250px] bg-white pl-2 text-base font-semibold outline-0" value={studentName} onChange={(e)=>setStudentName(e.target.value)} placeholder="" id="" />
-        <input type="button" value="Search" onClick={onSearch} style={{backgroundColor: '#1976d2'}} className="p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors" />
+        <input type="button" value={loading ? 'Searching...' : 'Search'} onClick={onSearch} style={{backgroundColor: '#1976d2'}} className="p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors" />
       </div>
     </div>
   )

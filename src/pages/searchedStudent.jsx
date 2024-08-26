@@ -47,13 +47,13 @@ const Content = () => {
             className="w-full h-fit p-8 flex flex-row shadow-md justify-between rounded-lg cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
           >
             <div className="flex flex-row gap-6">
-              <div className="w-36 h-36">
+              <div className="w-40 h-40">
                 <Image src={Avatar} roundedCircle />
               </div>
               <div className="flex flex-col justify-center gap-2">
                 <p className="text-3xl font-bold">{`${data.firstName} ${data.lastName}`}</p>
                 <p className='text-lg font-light text-gray-500'>{`Class: ${data.cls}`}</p>
-                 <div className='flex flex-col w-full justify-between'> 
+                 <div className='flex flex-col w-full justify-between gap-2'> 
                     <p className='text-lg font-light text-gray-500'>{`Paid: ${NigeriaNaira.format(data.paid)}`}</p>
                     <p className='text-lg font-light text-gray-500'>{`Owing: ${NigeriaNaira.format(data.owing)}`}</p>
                  </div>

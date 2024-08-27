@@ -23,7 +23,10 @@ const SearchForm = () => {
       localStorage.setItem('searchResult', JSON.stringify(students.data))
       navigate('/searchResult')
     } catch (error) {
-      alert(error)
+      if(error.status = 404){
+        alert('student not found')
+      }
+      setLoading(false)
       console.log(error)
     }
   }
